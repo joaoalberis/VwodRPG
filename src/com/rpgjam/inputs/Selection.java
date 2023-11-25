@@ -1,13 +1,9 @@
 package com.rpgjam.inputs;
 
-import java.util.List;
 import java.util.Scanner;
 
-import com.rpgjam.screens.Screen;
 
 public class Selection {
-  private int options;
-  private boolean selected = false;
   private Scanner input;
 
   public Selection() {
@@ -29,7 +25,7 @@ public class Selection {
         optionSelect = input.nextInt();
       }
     }
+    input.close();
     return "";
   }
-  
 }
