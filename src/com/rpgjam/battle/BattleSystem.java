@@ -22,10 +22,12 @@ public class BattleSystem {
       if (action.equalsIgnoreCase("item")) {
         while (!processPlayerAction(action, player, enemy, sc)) {
           action = getPlayerAction();
+          if (action == "Fugir" || action == "Atacar") break;
         }
-      } else if (action.equalsIgnoreCase("fugir")) {
-        return BattleResult.ESCAPE;
-      } else {
+      } 
+      if (action.equalsIgnoreCase("fugir")) {
+        if(processPlayerAction(action, player, enemy, sc)) return BattleResult.ESCAPE;
+      } else if(action.equalsIgnoreCase("atacar")){
         processPlayerAction(action, player, enemy, sc);
       }
 
@@ -35,6 +37,8 @@ public class BattleSystem {
 
     if (player.isAlive()) {
       Console.dialog("\nVocê venceu a batalha!");
+      player.addExperience(enemy.getExperience());
+      player.addGold(enemy.getGold());
       return BattleResult.VICTORY;
     } else {
       Console.dialog("\nVocê foi derrotado. Mais sorte na próxima vez!");
@@ -84,7 +88,7 @@ public class BattleSystem {
     Console.clearConsole();
     player.showInventory();
 
-    System.out.println("1. Poção de Defesa, 2. Poção de Cura, 3. Poção de Ataque");
+    System.out.println("1. Poção de Defesa, 2. Poção de Cura, 3. Poção de Ataque, 4- Sair");
 
     int itemSelect = sc.nextInt();
     Map<String, Integer> inventory = player.getInventory();
@@ -92,6 +96,8 @@ public class BattleSystem {
     for (Map.Entry<String, Integer> inv : inventory.entrySet()) {
         String key = inv.getKey();
         Integer value = inv.getValue();
+
+        if (itemSelect == 4) return false;
 
         if (isValidSelection(itemSelect, key, value, player)) {
             applyItemEffects(player, itemSelect, key, value);

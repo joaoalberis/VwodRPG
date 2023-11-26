@@ -30,4 +30,18 @@ public class Selection {
     }
     return "";
   }
+
+  public String newSelection(String optionsMessage, String message) {
+    System.out.println(message);
+    int optionSelect = input.nextInt();
+    while(optionSelect != 1){
+      Console.clearConsole();
+      Console.printRed("\nSelecione um valor válido!");
+      Console.printPurple(message);
+      optionSelect = input.nextInt();
+
+    }
+    Console.printGreen(optionsMessage);
+    return optionsMessage;
+  }
 }

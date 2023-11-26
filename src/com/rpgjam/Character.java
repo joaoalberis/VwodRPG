@@ -2,16 +2,20 @@ package com.rpgjam;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.rpgjam.utils.Console;
+
 public class Character {
     private String Classe;
     private String Nickname;
     private int Nivel;
     private Double Experiencia;
     private Double Health;
+    private Double maxHealth;
     private Double Defense;
     private Double Atack;
     private Double Gold;
     private Map<String, Integer> Inventory;
+    private Double requiredExperience;
 
     public Character(String classe, String nickname) {
         this.Classe = classe;
@@ -19,6 +23,7 @@ public class Character {
         this.Nivel = 1;
         this.Experiencia = 0.0;
         this.Health = 10.0;
+        this.maxHealth = 10.0;
         this.Defense = 5.0;
         this.Atack = 8.0;
         this.Gold = 50.0;
@@ -27,6 +32,7 @@ public class Character {
             put("Poção de Ataque", 0);
             put("Poção de Defesa", 0);
         }};
+        this.requiredExperience = 50.0;
     }
     public String getClasse() {
         return this.Classe;
@@ -99,7 +105,10 @@ public class Character {
     }
 
     public void addExperience(Double experience) {
-        this.Experiencia = this.Experiencia + experience;
+        this.Experiencia += experience;
+        while (this.Experiencia >= this.requiredExperience){
+            upLevel();
+        }
     }
 
     public void addGold(Double gold){
@@ -127,5 +136,15 @@ public class Character {
     }
     public void setInventory(Map<String, Integer> inventory) {
         this.Inventory = inventory;
+    }
+
+    private  void upLevel(){
+        this.Nivel++;
+        this.Experiencia -= this.requiredExperience;
+        this.requiredExperience *= 1.3;
+        this.Health = this.maxHealth * 1.35;
+        this.Defense *= 1.15;
+        this.Atack *= 1.1;
+        Console.printGreen("Parabéns! Você alcançou o nivel " + this.Nivel + "!\nVerifique seus novos status.");
     }
 }
