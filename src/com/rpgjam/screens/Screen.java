@@ -88,11 +88,12 @@ public class Screen {
   }
 
   public void adventure() {
+    Console.clearConsole();
     Console.dialog("\nVocê começa sua jornada em Viwod, uma terra cheia de mistérios e perigos.");
     Console.dialog("Enquanto caminha pela floresta, você encontra um grupo de goblins furiosos!");
     
     // Luta contra os goblins
-    BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Goblin", 10, 5));
+    BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Goblin", 10, 5), input);
     
     // BattleResult battleResult = BattleResult.VICTORY; 
 
@@ -150,9 +151,9 @@ public class Screen {
             // Mais eventos em Viwod...
         }
     } else {
-        Console.dialog("O " + character.getClasse() + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DO GLOBIN)");
+        Console.dialog("O " + character.getNickname() + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DO GLOBIN)");
         Console.sleep(3000);
-        menu(); // Volta ao menu principal
+        menu();
     }
 }
 
@@ -181,10 +182,10 @@ public class Screen {
         character.removeGold(25.0);
       }else if(optionSelect.contains("poção de ataque") && character.getGold() >= 40){
         character.addItemInvetory("Poção de Ataque", 1);
-        character.removeGold(25.0);
+        character.removeGold(40.0);
       }else if(optionSelect.contains("poção de defesa") && character.getGold() >= 35){
         character.addItemInvetory("Poção de Defesa", 1);
-        character.removeGold(25.0);
+        character.removeGold(35.0);
       }else if(optionSelect.contains("sair")){
         Console.clearConsole();
         menuAction();

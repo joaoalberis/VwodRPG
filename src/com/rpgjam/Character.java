@@ -23,9 +23,9 @@ public class Character {
         this.Atack = 8.0;
         this.Gold = 50.0;
         this.Inventory = new HashMap<String, Integer>() {{
-            put("poção de cura", 0);
-            put("poção de ataque", 0);
-            put("poção de defesa", 0);
+            put("Poção de Cura", 0);
+            put("Poção de Ataque", 0);
+            put("Poção de Defesa", 0);
         }};
     }
     public String getClasse() {
