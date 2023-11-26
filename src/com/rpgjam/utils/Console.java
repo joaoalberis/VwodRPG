@@ -17,7 +17,7 @@ public class Console extends Color {
         System.out.print(YELLOW);
         for (char c : formattedMsg.toCharArray()) {
             System.out.print(c);
-            sleep(20);
+            sleep(10);
         }
         System.out.println(Color.RESET);
     }

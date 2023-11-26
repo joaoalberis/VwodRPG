@@ -15,6 +15,13 @@ public class Screen {
   public void menu() {
     while (!selected) {
       Console.clearConsole();
+      Console.printGreen(" ___      ___ ___       __   ________  ________     \r\n" + //
+          "|\\  \\    /  /|\\  \\     |\\  \\|\\   __  \\|\\   ___ \\    \r\n" + //
+          "\\ \\  \\  /  / | \\  \\    \\ \\  \\ \\  \\|\\  \\ \\  \\_|\\ \\   \r\n" + //
+          " \\ \\  \\/  / / \\ \\  \\  __\\ \\  \\ \\  \\\\\\  \\ \\  \\ \\\\ \\  \r\n" + //
+          "  \\ \\    / /   \\ \\  \\|\\__\\_\\  \\ \\  \\\\\\  \\ \\  \\_\\\\ \\ \r\n" + //
+          "   \\ \\__/ /     \\ \\____________\\ \\_______\\ \\_______\\\r\n" + //
+          "    \\|__|/       \\|____________|\\|_______|\\|_______|\r\n");
       Console.printGreen("***************************");
       Console.printGreen("*       " + Color.BOLD + "MENU PRINCIPAL" + "     *");
       Console.printGreen("***************************");
@@ -51,7 +58,7 @@ public class Screen {
 
   public void menuAction() {
     while (!selected) {
-      Console.printPurple("Selecione uma ação:\n1. Aventura\n2. Loja\n3. Ver Status\n4. Ver Inventario\n5. Voltar");
+      Console.printPurple("Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
       int option = input.nextInt();
       switch (option) {
         case 1:
@@ -97,12 +104,9 @@ public class Screen {
         "| 6. Poção de Ataque (1x)     - 25  Gold       |\n" +
         "+---------------------------------------------+\n";
     Console.clearConsole();
-    selection.newSelection(6, options, Color.RED + optionsText + Color.RESET);
+    String opionSelect = selection.newSelection(6, options, Color.RED + optionsText + Color.RESET);
 
-    // selection.newSelection(6, options,
-    // "1- Poção de Cura(1x) - 20 Gold\n2- Arma Iniciante(1x) - 30 Gold\n3- Arma
-    // Intermediaria(1x) - 60 Gold\n4- Arma Avançada(1x) - 100 Gold\n5- Arma
-    // Suprema(1x) - 150 Gold\n6- Porção de Ataque(1x) - 25 Gold");
+    
   }
 
   public void newGame() {

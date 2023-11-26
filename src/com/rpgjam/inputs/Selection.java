@@ -15,10 +15,10 @@ public class Selection {
   public String newSelection(int options, String[] optionsMessage, String message) {
     System.out.println(message);
     int optionSelect = input.nextInt();
-    for(int i = 1; i <= options; i++) {
+    for(int i = 0; i <= options - 1; i++) {
       if (i == optionSelect){
-        Console.printGreen(optionsMessage[i - 1]);
-        return optionsMessage[i - 1];
+        Console.printGreen(optionsMessage[i]);
+        return optionsMessage[i];
       }
       if(i == options) {
         Console.printRed("\nSelecione um valor válido!");
