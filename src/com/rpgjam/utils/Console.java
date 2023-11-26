@@ -6,14 +6,14 @@ public class Console extends Color {
         System.out.print(YELLOW);
         for (char c : msg.toCharArray()) {
             System.out.print(c);
-            sleep(20);
+            sleep(10);
         }
         System.out.println(Color.RESET);
     }
 
     public static void dialogf(String msg, Object... args) {
         String formattedMsg = String.format(msg, args);
-        
+
         System.out.print(YELLOW);
         for (char c : formattedMsg.toCharArray()) {
             System.out.print(c);
@@ -22,7 +22,7 @@ public class Console extends Color {
         System.out.println(Color.RESET);
     }
 
-    private static void sleep(int milliseconds) {
+    public static void sleep(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (Exception e) {

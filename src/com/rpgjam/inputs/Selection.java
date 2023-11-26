@@ -16,19 +16,18 @@ public class Selection {
     System.out.println(message);
     int optionSelect = input.nextInt();
     for(int i = 0; i <= options - 1; i++) {
-      if (i == optionSelect){
+      if (i == optionSelect - 1){
         Console.printGreen(optionsMessage[i]);
         return optionsMessage[i];
       }
-      if(i == options) {
+      if(i == options - 1) {
+        Console.clearConsole();
         Console.printRed("\nSelecione um valor válido!");
         Console.printPurple(message);
         i = 0;
         optionSelect = input.nextInt();
       }
     }
-    Console.clearConsole();
-    input.close();
     return "";
   }
 }
