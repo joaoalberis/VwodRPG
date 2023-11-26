@@ -13,7 +13,7 @@ public class BattleSystem {
   private static Selection selection = new Selection();
 
   public static BattleResult startBattle(Character player, Enemy enemy, Scanner sc) {
-    Console.dialogf("Um %s selvagem apareceu!\n", enemy.getName());
+    Console.dialogf("\nUm %s selvagem apareceu!\n", enemy.getName());
 
     while (player.isAlive() && enemy.isAlive()) {
       displayBattleStatus(player, enemy);
@@ -22,10 +22,12 @@ public class BattleSystem {
       if (action.equalsIgnoreCase("item")) {
         while (!processPlayerAction(action, player, enemy, sc)) {
           action = getPlayerAction();
+          if (action == "Fugir" || action == "Atacar") break;
         }
-      } else if (action.equalsIgnoreCase("fugir")) {
-        return BattleResult.ESCAPE;
-      } else {
+      } 
+      if (action.equalsIgnoreCase("fugir")) {
+        if(processPlayerAction(action, player, enemy, sc)) return BattleResult.ESCAPE;
+      } else if(action.equalsIgnoreCase("atacar")){
         processPlayerAction(action, player, enemy, sc);
       }
 
@@ -35,6 +37,8 @@ public class BattleSystem {
 
     if (player.isAlive()) {
       Console.dialog("\nVocê venceu a batalha!");
+      player.addExperience(enemy.getExperience());
+      player.addGold(enemy.getGold());
       return BattleResult.VICTORY;
     } else {
       Console.dialog("\nVocê foi derrotado. Mais sorte na próxima vez!");
@@ -43,11 +47,11 @@ public class BattleSystem {
   }
 
   private static void displayBattleStatus(Character player, Enemy enemy) {
-    Console.printCyan(" ****************************");
-    Console.dialogf("* %s%s%s - %s | %s%s%s - %s *",
+    Console.printCyan(" ********************************");
+    Console.dialogf("* %s%s%s - (%.2f) | %s%s%s - (%.2f) *",
         Color.RED, player.getNickname(), Color.RESET, player.getHealth(),
         Color.RED, enemy.getName(), Color.RESET, enemy.getHealth());
-    Console.printCyan(" ****************************\n");
+    Console.printCyan(" ********************************\n");
 
   }
 
@@ -60,7 +64,7 @@ public class BattleSystem {
 
     String option = selection.newSelection(3,
         options, "Escolha sua ação:\n1. Atacar\n2. Usar Item\n3. Fugir");
-
+    Console.clearConsole();
     return option;
   }
 
@@ -84,7 +88,7 @@ public class BattleSystem {
     Console.clearConsole();
     player.showInventory();
 
-    System.out.println("1. Poção de Defesa, 2. Poção de Cura, 3. Poção de Ataque");
+    System.out.println("1. Poção de Defesa, 2. Poção de Cura, 3. Poção de Ataque, 4. Sair");
 
     int itemSelect = sc.nextInt();
     Map<String, Integer> inventory = player.getInventory();
@@ -92,6 +96,11 @@ public class BattleSystem {
     for (Map.Entry<String, Integer> inv : inventory.entrySet()) {
         String key = inv.getKey();
         Integer value = inv.getValue();
+
+        if (itemSelect == 4) {
+          Console.clearConsole();
+          return false;
+        }
 
         if (isValidSelection(itemSelect, key, value, player)) {
             applyItemEffects(player, itemSelect, key, value);
@@ -133,7 +142,7 @@ private static void applyItemEffects(Character player, int itemSelect, String ke
   private static void playerAttack(Character player, Enemy enemy) {
     double damageDealt = player.getAtack();
     enemy.takeDamage(damageDealt);
-    Console.dialogf("Você ataca o %s e causa %.1f de dano!\n", enemy.getName(), damageDealt);
+    Console.dialogf("Você ataca o %s e causa %.1f de dano!", enemy.getName(), damageDealt);
   }
 
   private static void enemyAttack(Character player, Enemy enemy) {

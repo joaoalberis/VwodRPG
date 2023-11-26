@@ -6,7 +6,7 @@ public class Console extends Color {
         System.out.print(YELLOW);
         for (char c : msg.toCharArray()) {
             System.out.print(c);
-            sleep(10);
+            sleep(1);
         }
         System.out.println(Color.RESET);
     }

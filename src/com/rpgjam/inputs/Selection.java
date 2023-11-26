@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import com.rpgjam.utils.Console;
 
-
 public class Selection {
   private Scanner input;
 
@@ -13,14 +12,14 @@ public class Selection {
   }
 
   public String newSelection(int options, String[] optionsMessage, String message) {
-    System.out.println(message);
+    Console.printBlue(message);
     int optionSelect = input.nextInt();
-    for(int i = 0; i <= options - 1; i++) {
-      if (i == optionSelect - 1){
-        Console.printGreen(optionsMessage[i]);
+    for (int i = 0; i <= options - 1; i++) {
+      if (i == optionSelect - 1) {
+        Console.printBlue(optionsMessage[i]);
         return optionsMessage[i];
       }
-      if(i == options - 1) {
+      if (i == options - 1) {
         Console.clearConsole();
         Console.printRed("\nSelecione um valor válido!");
         Console.printPurple(message);
@@ -29,5 +28,19 @@ public class Selection {
       }
     }
     return "";
+  }
+
+  public String newSelection(String optionsMessage, String message) {
+    Console.printBlue(message);
+    int optionSelect = input.nextInt();
+    while (optionSelect != 1) {
+      Console.clearConsole();
+      Console.printRed("\nSelecione um valor válido!");
+      Console.printPurple(message);
+      optionSelect = input.nextInt();
+
+    }
+    Console.printGreen(optionsMessage);
+    return optionsMessage;
   }
 }

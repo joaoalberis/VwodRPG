@@ -3,10 +3,8 @@ package com.rpgjam.screens;
 import java.util.Scanner;
 
 import com.rpgjam.Character;
-import com.rpgjam.battle.BattleResult;
-import com.rpgjam.battle.BattleSystem;
-import com.rpgjam.enemy.Enemy;
 import com.rpgjam.inputs.Selection;
+import com.rpgjam.story.Adventure;
 import com.rpgjam.utils.Color;
 import com.rpgjam.utils.Console;
 
@@ -19,21 +17,21 @@ public class Screen {
   public void menu() {
     while (!selected) {
       Console.clearConsole();
-      Console.printGreen(" ___      ___ ___       __   ________  ________     \r\n" + //
+      Console.printGreen(Color.BOLD + " ___      ___ ___       __   ________  ________     \r\n" + //
           "|\\  \\    /  /|\\  \\     |\\  \\|\\   __  \\|\\   ___ \\    \r\n" + //
           "\\ \\  \\  /  / | \\  \\    \\ \\  \\ \\  \\|\\  \\ \\  \\_|\\ \\   \r\n" + //
           " \\ \\  \\/  / / \\ \\  \\  __\\ \\  \\ \\  \\\\\\  \\ \\  \\ \\\\ \\  \r\n" + //
           "  \\ \\    / /   \\ \\  \\|\\__\\_\\  \\ \\  \\\\\\  \\ \\  \\_\\\\ \\ \r\n" + //
           "   \\ \\__/ /     \\ \\____________\\ \\_______\\ \\_______\\\r\n" + //
           "    \\|__|/       \\|____________|\\|_______|\\|_______|\r\n");
-      Console.printGreen("***************************");
-      Console.printGreen("*       " + Color.BOLD + "MENU PRINCIPAL" + "     *");
-      Console.printGreen("***************************");
-      Console.printGreen("*  1. Novo Jogo           *");
-      Console.printGreen("*  2. Tutorial            *");
-      Console.printGreen("*  3. Créditos            *");
-      Console.printGreen("*  4. Sair                *");
-      Console.printGreen("***************************\n");
+      Console.printGreen("****************************************");
+      Console.printGreen("*             " + Color.BOLD + "MENU PRINCIPAL" + "           *");
+      Console.printGreen("****************************************");
+      Console.printGreen("*            1. Novo Jogo              *");
+      Console.printGreen("*            2. Tutorial               *");
+      Console.printGreen("*            3. Créditos               *");
+      Console.printGreen("*            4. Sair                   *");
+      Console.printGreen("****************************************\n");
 
       String option = input.nextLine();
       switch (option) {
@@ -42,7 +40,7 @@ public class Screen {
           selected = true;
           break;
         case "2":
-          Console.printBold("Escolheu tutorial.");
+          tutorial();
           selected = true;
           break;
         case "3":
@@ -60,9 +58,18 @@ public class Screen {
     }
   }
 
+  public void tutorial() {
+    Console.clearConsole();
+    Console.printBlue(
+        "Chegou o momento de se aventurar pelo incrível universo de VwodRpg! Sua jornada se inicia nesse mundo intrigante chamado Vwod. Antes de começar essa épica aventura, faça uma escolha inteligente para a sua classe, pois essa decisão será permanente. Ao longo da jornada, você enfrentará decisões cruciais e monstros em um sistema empolgante de jogabilidade por turnos, onde cada escolha é crucial. Ataque, use itens estrategicamente ou arrisque uma fuga calculada.\n\nE não se esqueça das recompensas! Ao derrotar um monstro, você ganhará experiência valiosa (XP) e Gold(Moeda). No entanto, se optar por uma fuga bem-sucedida, continuará na história, mas perderá uma quantia em ouro, além de não ganhar XP. Entre os itens disponíveis, encontram-se a Poção de Cura, que restaura 50% da sua vida total, a Poção de Defesa, que aumenta sua resistência em 25%, e a Poção de Ataque, proporcionando um aumento de 20% no seu poder de ataque. Além da XP, as vitórias também renderão ouro, a moeda essencial para adquirir itens valiosos na loja.\n\nPrepare-se para uma jornada emocionante, repleta de desafios, em VwodRpg! 👾✨\n");
+    selection.newSelection("Voltando para Pagina inicial", "1- Sair do Tutorial");
+    menu();
+  }
+
   public void menuAction() {
     while (!selected) {
-      Console.printPurple("Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
+      Console.printCyan(
+          "Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
       int option = input.nextInt();
       switch (option) {
         case 1:
@@ -88,75 +95,9 @@ public class Screen {
   }
 
   public void adventure() {
-    Console.clearConsole();
-    Console.dialog("\nVocê começa sua jornada em Viwod, uma terra cheia de mistérios e perigos.");
-    Console.dialog("Enquanto caminha pela floresta, você encontra um grupo de goblins furiosos!");
-    
-    // Luta contra os goblins
-    BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Goblin", 10, 5), input);
-    
-    // BattleResult battleResult = BattleResult.VICTORY; 
-
-    if (battleResult == BattleResult.VICTORY) {
-        Console.dialog("Você derrotou os goblins com sucesso!");
-        Console.dialog("Em recompensa, você encontra uma antiga entrada para uma masmorra.");
-        Console.dialog("Deseja entrar na masmorra?");
-
-        boolean enterDungeon = selection.newSelection(2, new String[]{"Sim", "Não"}, "1. Sim\n2. Não").equals("Sim");
-
-        if (enterDungeon) {
-            Console.dialog("Você entra na masmorra escura, cheia de corredores sombrios e armadilhas mortais.");
-            Console.dialog("Após explorar por um tempo, você encontra um baú trancado.");
-            
-            // Escolher método para abrir o baú
-            String[] chestOptions = {"Força", "Magia", "Destreza"};
-            String chosenMethod = selection.newSelection(3, chestOptions,
-                    "Escolha um método para abrir o baú:\n1. Força\n2. Magia\n3. Destreza");
-
-            switch (chosenMethod) {
-                case "Força":
-                    Console.dialog("Você usa toda a sua força para abrir o baú e encontra uma espada mágica!");
-                    // character.equipWeapon(new Weapon("Espada Mágica", 15));
-                    break;
-                case "Magia":
-                    Console.dialog("Você canaliza seus poderes mágicos para destrancar o baú e encontra um cajado poderoso!");
-                    // character.equipWeapon(new Weapon("Cajado Poderoso", 12));
-                    break;
-                case "Destreza":
-                    Console.dialog("Com habilidade e destreza, você desarma a armadilha no baú e encontra um arco incrível!");
-                    // character.equipWeapon(new Weapon("Arco Incrível", 10));
-                    break;
-            }
-
-            Console.dialog("Com seu novo equipamento, você decide continuar explorando a masmorra.");
-
-            // Mais eventos da masmorra...
-
-            Console.dialog("Após enfrentar vários desafios, você finalmente alcança o fim da masmorra e encontra um portal mágico.");
-            Console.dialog("O portal parece levar a um lugar desconhecido. O que você deseja fazer?");
-            
-            String[] portalOptions = {"Entrar no portal", "Ficar em Viwod"};
-            String portalDecision = selection.newSelection(2, portalOptions,
-                    "Deseja entrar no portal e explorar um novo mundo, ou prefere ficar em Viwod?");
-
-            if (portalDecision.equals("Entrar no portal")) {
-                Console.dialog("Você decide entrar no portal, ansioso por novas aventuras em terras desconhecidas.");
-                // Continuação para uma nova jornada ou finalização do jogo...
-            } else {
-                Console.dialog("Você opta por ficar em Viwod, explorando mais desafios nesta terra mágica.");
-                // Continuação para explorar Viwod...
-            }
-        } else {
-            Console.dialog("Você decide não entrar na masmorra e continua explorando Viwod.");
-            // Mais eventos em Viwod...
-        }
-    } else {
-        Console.dialog("O " + character.getNickname() + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DO GLOBIN)");
-        Console.sleep(3000);
-        menu();
-    }
-}
-
+    Adventure adv = new Adventure(character);
+    adv.startStory();
+  }
 
   public void shop() {
     String[] options = {
@@ -177,34 +118,37 @@ public class Screen {
     String optionSelect;
     do {
       optionSelect = selection.newSelection(4, options, Color.RED + optionsText + Color.RESET);
-      if (optionSelect.contains("poção de cura") && character.getGold() >= 25){
+      if (optionSelect.contains("poção de cura") && character.getGold() >= 25) {
         character.addItemInvetory("Poção de Cura", 1);
         character.removeGold(25.0);
-      }else if(optionSelect.contains("poção de ataque") && character.getGold() >= 40){
+      } else if (optionSelect.contains("poção de ataque") && character.getGold() >= 40) {
         character.addItemInvetory("Poção de Ataque", 1);
         character.removeGold(40.0);
-      }else if(optionSelect.contains("poção de defesa") && character.getGold() >= 35){
+      } else if (optionSelect.contains("poção de defesa") && character.getGold() >= 35) {
         character.addItemInvetory("Poção de Defesa", 1);
         character.removeGold(35.0);
-      }else if(optionSelect.contains("sair")){
+      } else if (optionSelect.contains("sair")) {
         Console.clearConsole();
         menuAction();
-      }else {
-        Console.printRed("Você não tem gold suficiente para essa compra!\nQuantidade de gold atual: " + character.getGold());
+      } else {
+        Console.printRed(
+            "Você não tem gold suficiente para essa compra!\nQuantidade de gold atual: " + character.getGold());
       }
     } while (!optionSelect.contains("sair"));
   }
 
-  public void status(){
-    Console.printGreen("Seus status atuais são:\nNivel - " + character.getNivel() + "\nExperiencia Atual - " + character.getExperiencia() + "\nAtaque - " + character.getAtack() + "\nDefesa - " + character.getDefense() + "Vida - " + character.getHealth() + "\nGold - " + character.getGold());
-    String[] options = {"Você retornou ao menu principal"};
+  public void status() {
+    Console.printGreen("Seus status atuais são:\nNivel - " + character.getNivel() + "\nExperiencia Atual - "
+        + character.getExperiencia() + "\nAtaque - " + character.getAtack() + "\nDefesa - " + character.getDefense()
+        + "\nVida - " + character.getHealth() + "\nGold - " + character.getGold());
+    String[] options = { "Você retornou ao menu principal" };
     selection.newSelection(1, options, "1- Voltar");
     menuAction();
   }
 
-  public void inventory(){
+  public void inventory() {
     character.showInventory();
-    String[] options = {"Você retornou ao menu principal"};
+    String[] options = { "Você retornou ao menu principal" };
     selection.newSelection(1, options, "1- Voltar");
     menuAction();
   }
@@ -218,7 +162,7 @@ public class Screen {
     };
     Console.clearConsole();
     Console.dialog("\nVold: Olá jovem aventureiro, me chamo vold vejo que decidiu se aventurar pelas terras de viwod.");
-    Console.dialog("- Qual seria o nome do jovem aventureiro?\n");
+    Console.dialog("- Qual seria o nome do jovem aventureiro?");
     String nick = input.nextLine();
     Console.clearConsole();
 
