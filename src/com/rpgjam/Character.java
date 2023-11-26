@@ -145,6 +145,6 @@ public class Character {
         this.Health = this.maxHealth * 1.35;
         this.Defense *= 1.15;
         this.Atack *= 1.1;
-        Console.printGreen("Parabéns! Você alcançou o nivel " + this.Nivel + "!\nVerifique seus novos status.");
+        Console.printGreen("\nParabéns! Você alcançou o nivel " + this.Nivel + "!\nVerifique seus novos status.\n");
     }
 }

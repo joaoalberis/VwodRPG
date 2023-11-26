@@ -17,21 +17,21 @@ public class Screen {
   public void menu() {
     while (!selected) {
       Console.clearConsole();
-      Console.printGreen(" ___      ___ ___       __   ________  ________     \r\n" + //
+      Console.printGreen(Color.BOLD + " ___      ___ ___       __   ________  ________     \r\n" + //
           "|\\  \\    /  /|\\  \\     |\\  \\|\\   __  \\|\\   ___ \\    \r\n" + //
           "\\ \\  \\  /  / | \\  \\    \\ \\  \\ \\  \\|\\  \\ \\  \\_|\\ \\   \r\n" + //
           " \\ \\  \\/  / / \\ \\  \\  __\\ \\  \\ \\  \\\\\\  \\ \\  \\ \\\\ \\  \r\n" + //
           "  \\ \\    / /   \\ \\  \\|\\__\\_\\  \\ \\  \\\\\\  \\ \\  \\_\\\\ \\ \r\n" + //
           "   \\ \\__/ /     \\ \\____________\\ \\_______\\ \\_______\\\r\n" + //
           "    \\|__|/       \\|____________|\\|_______|\\|_______|\r\n");
-      Console.printGreen("***************************");
-      Console.printGreen("*       " + Color.BOLD + "MENU PRINCIPAL" + "     *");
-      Console.printGreen("***************************");
-      Console.printGreen("*  1. Novo Jogo           *");
-      Console.printGreen("*  2. Tutorial            *");
-      Console.printGreen("*  3. Créditos            *");
-      Console.printGreen("*  4. Sair                *");
-      Console.printGreen("***************************\n");
+      Console.printGreen("****************************************");
+      Console.printGreen("*             " + Color.BOLD + "MENU PRINCIPAL" + "           *");
+      Console.printGreen("****************************************");
+      Console.printGreen("*            1. Novo Jogo              *");
+      Console.printGreen("*            2. Tutorial               *");
+      Console.printGreen("*            3. Créditos               *");
+      Console.printGreen("*            4. Sair                   *");
+      Console.printGreen("****************************************\n");
 
       String option = input.nextLine();
       switch (option) {
@@ -58,16 +58,17 @@ public class Screen {
     }
   }
 
-  public void tutorial(){
+  public void tutorial() {
     Console.clearConsole();
-    Console.printBlue("Chegou o momento de se aventurar pelo incrível universo de VwodRpg! Sua jornada se inicia nesse mundo intrigante chamado Vwod. Antes de começar essa épica aventura, faça uma escolha inteligente para a sua classe, pois essa decisão será permanente. Ao longo da jornada, você enfrentará decisões cruciais e monstros em um sistema empolgante de jogabilidade por turnos, onde cada escolha é crucial. Ataque, use itens estrategicamente ou arrisque uma fuga calculada.\n\nE não se esqueça das recompensas! Ao derrotar um monstro, você ganhará experiência valiosa (XP) e Gold(Moeda). No entanto, se optar por uma fuga bem-sucedida, continuará na história, mas perderá uma quantia em ouro, além de não ganhar XP. Entre os itens disponíveis, encontram-se a Poção de Cura, que restaura 50% da sua vida total, a Poção de Defesa, que aumenta sua resistência em 25%, e a Poção de Ataque, proporcionando um aumento de 20% no seu poder de ataque. Além da XP, as vitórias também renderão ouro, a moeda essencial para adquirir itens valiosos na loja.\n\nPrepare-se para uma jornada emocionante, repleta de desafios, em VwodRpg! 👾✨\n");
-    selection.newSelection( "Voltando para Pagina inicial", "1- Sair do Tutorial");
+    Console.printBlue(
+        "Chegou o momento de se aventurar pelo incrível universo de VwodRpg! Sua jornada se inicia nesse mundo intrigante chamado Vwod. Antes de começar essa épica aventura, faça uma escolha inteligente para a sua classe, pois essa decisão será permanente. Ao longo da jornada, você enfrentará decisões cruciais e monstros em um sistema empolgante de jogabilidade por turnos, onde cada escolha é crucial. Ataque, use itens estrategicamente ou arrisque uma fuga calculada.\n\nE não se esqueça das recompensas! Ao derrotar um monstro, você ganhará experiência valiosa (XP) e Gold(Moeda). No entanto, se optar por uma fuga bem-sucedida, continuará na história, mas perderá uma quantia em ouro, além de não ganhar XP. Entre os itens disponíveis, encontram-se a Poção de Cura, que restaura 50% da sua vida total, a Poção de Defesa, que aumenta sua resistência em 25%, e a Poção de Ataque, proporcionando um aumento de 20% no seu poder de ataque. Além da XP, as vitórias também renderão ouro, a moeda essencial para adquirir itens valiosos na loja.\n\nPrepare-se para uma jornada emocionante, repleta de desafios, em VwodRpg! 👾✨\n");
+    selection.newSelection("Voltando para Pagina inicial", "1- Sair do Tutorial");
     menu();
   }
 
   public void menuAction() {
     while (!selected) {
-      Console.printPurple(
+      Console.printCyan(
           "Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
       int option = input.nextInt();
       switch (option) {
@@ -139,7 +140,7 @@ public class Screen {
   public void status() {
     Console.printGreen("Seus status atuais são:\nNivel - " + character.getNivel() + "\nExperiencia Atual - "
         + character.getExperiencia() + "\nAtaque - " + character.getAtack() + "\nDefesa - " + character.getDefense()
-        + "Vida - " + character.getHealth() + "\nGold - " + character.getGold());
+        + "\nVida - " + character.getHealth() + "\nGold - " + character.getGold());
     String[] options = { "Você retornou ao menu principal" };
     selection.newSelection(1, options, "1- Voltar");
     menuAction();
@@ -161,7 +162,7 @@ public class Screen {
     };
     Console.clearConsole();
     Console.dialog("\nVold: Olá jovem aventureiro, me chamo vold vejo que decidiu se aventurar pelas terras de viwod.");
-    Console.dialog("- Qual seria o nome do jovem aventureiro?\n");
+    Console.dialog("- Qual seria o nome do jovem aventureiro?");
     String nick = input.nextLine();
     Console.clearConsole();
 
