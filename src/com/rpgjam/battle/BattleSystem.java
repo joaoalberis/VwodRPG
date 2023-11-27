@@ -13,7 +13,7 @@ public class BattleSystem {
   private static Selection selection = new Selection();
 
   public static BattleResult startBattle(Character player, Enemy enemy, Scanner sc) {
-    Console.dialogf("\nUm %s selvagem apareceu!\n", enemy.getName());
+    Console.narratorf(Color.BOLD + Color.RED + "\n%s apareceram!\n", enemy.getName());
 
     while (player.isAlive() && enemy.isAlive()) {
       displayBattleStatus(player, enemy);
@@ -36,22 +36,22 @@ public class BattleSystem {
     }
 
     if (player.isAlive()) {
-      Console.dialog("\nVocê venceu a batalha!");
+      Console.narrator("\nVocê venceu a batalha!");
       player.addExperience(enemy.getExperience());
       player.addGold(enemy.getGold());
       return BattleResult.VICTORY;
     } else {
-      Console.dialog("\nVocê foi derrotado. Mais sorte na próxima vez!");
+      Console.narrator("\nVocê foi derrotado. Mais sorte na próxima vez!");
       return BattleResult.DEFEAT;
     }
   }
 
   private static void displayBattleStatus(Character player, Enemy enemy) {
-    Console.printCyan(" ********************************");
+    Console.printCyan(" *************************************");
     Console.dialogf("* %s%s%s - (%.2f) | %s%s%s - (%.2f) *",
         Color.RED, player.getNickname(), Color.RESET, player.getHealth(),
         Color.RED, enemy.getName(), Color.RESET, enemy.getHealth());
-    Console.printCyan(" ********************************\n");
+    Console.printCyan(" *************************************\n");
 
   }
 
@@ -78,7 +78,7 @@ public class BattleSystem {
       case "Fugir":
         return attemptEscape();
       default:
-        Console.dialog("Ação inválida. Tente novamente.");
+        Console.narrator("Ação inválida. Tente novamente.");
         break;
     }
     return false;
@@ -88,7 +88,7 @@ public class BattleSystem {
     Console.clearConsole();
     player.showInventory();
 
-    System.out.println("1. Poção de Defesa, 2. Poção de Cura, 3. Poção de Ataque, 4. Sair");
+    Console.narrator(Color.CYAN + "1. Poção de Defesa, 2. Poção de Cura, 3. Poção de Ataque, 4. Sair");
 
     int itemSelect = sc.nextInt();
     Map<String, Integer> inventory = player.getInventory();
@@ -108,7 +108,7 @@ public class BattleSystem {
         }
     }
 
-    Console.dialog("Meu querido, você não tem esse item. Por que quer usar?");
+    Console.narrator(Color.RED + "Meu querido, você não tem esse item. Por que quer usar?");
     return false;
 }
 
@@ -125,15 +125,15 @@ private static void applyItemEffects(Character player, int itemSelect, String ke
     if (itemSelect == 1) {
         Double newDefense = player.getDefense() * 0.25;
         player.setDefense(newDefense + player.getDefense());
-        Console.dialog("Você usou uma Poção de Defesa e fortaleceu temporariamente sua resistência!");
+        Console.narrator("Você usou uma Poção de Defesa e fortaleceu temporariamente sua resistência!");
     } else if (itemSelect == 2) {
         Double cura = player.getMaxHealth() * 0.5;
         player.setHealth(player.getHealth() + cura);
-        Console.dialog("Você usou uma Poção de Cura e recuperou parte da sua saúde!");
+        Console.narrator("Você usou uma Poção de Cura e recuperou parte da sua saúde!");
     } else if (itemSelect == 3) {
         Double newAttack = player.getAtack() * 0.2;
         player.setAtack(newAttack + player.getAtack());
-        Console.dialog("Você usou uma Poção de Ataque");
+        Console.narrator("Você usou uma Poção de Ataque");
     }
 
     player.removeItemInventory(key, 1);
@@ -142,23 +142,23 @@ private static void applyItemEffects(Character player, int itemSelect, String ke
   private static void playerAttack(Character player, Enemy enemy) {
     double damageDealt = player.getAtack();
     enemy.takeDamage(damageDealt);
-    Console.dialogf("Você ataca o %s e causa %.1f de dano!", enemy.getName(), damageDealt);
+    Console.narratorf("Você ataca os %s e causa %.1f de dano!", enemy.getName(), damageDealt);
   }
 
   private static void enemyAttack(Character player, Enemy enemy) {
     double damageDealt = enemy.getDamage() - player.getDefense() / 2;
     player.takeDamage(damageDealt);
-    Console.dialogf("O %s ataca você e causa %.1f de dano!\n", enemy.getName(), damageDealt);
+    Console.narratorf("Os %s atacam você e causa %.1f de dano!\n", enemy.getName(), damageDealt);
   }
 
   private static boolean attemptEscape() {
     boolean escaped = Math.random() < 0.5;
 
     if (escaped) {
-      Console.dialog("Você conseguiu escapar da batalha!");
+      Console.narrator("Você conseguiu escapar da batalha!");
       return true;
     } else {
-      Console.dialog("Você não conseguiu escapar desta vez!");
+      Console.narrator("Você não conseguiu escapar desta vez!");
       return false;
     }
   }

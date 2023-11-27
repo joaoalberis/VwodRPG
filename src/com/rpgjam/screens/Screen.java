@@ -205,8 +205,8 @@ public class Screen {
 
     String classe = selection.newSelection(4,
         options, "1. Espadachim\n2. Atirador\n3. Guerreiro\n");
-
-    Console.dialogf("- Perfeito %s, Você irá aprender e lutará que nem um %s Mas preciso que você diga qual será o nome de seu bando pirata?", Color.RED + Color.BOLD + nick + Color.YELLOW, Color.GREEN + Color.BOLD + classe + Color.YELLOW);
+    Console.clearConsole();
+    Console.dialogf("- Perfeito %s, Você irá aprender e lutará que nem um %s. Mas preciso que você me diga qual será o nome de seu bando pirata: ", Color.RED + Color.BOLD + nick + Color.RESET + Color.GREEN, Color.CYAN + Color.BOLD + classe + Color.RESET + Color.GREEN);
 
     String bevy = input.nextLine();
 
@@ -214,7 +214,7 @@ public class Screen {
     Console.clearConsole();
     Console.dialogf(
         "\nVold: %s, Agora que você é um %s está apto para enfrentar os desafios do mar de viwod, mas tome cuidado, pois pode dar de cara com uma tripulação mais forte. Desejo sorte em sua navegação e que encontre bons companheiro para o seu bando dos %s\n",
-        Color.RED + Color.BOLD + character.getNickname() + Color.YELLOW, Color.GREEN + Color.BOLD + character.getClasse() + Color.YELLOW, Color.RED + Color.BOLD + character.getBevy());
+        Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN, Color.CYAN + Color.BOLD + character.getClasse() + Color.RESET + Color.GREEN, Color.RED + Color.BOLD + character.getBevy());
     menuAction();
   }
 }
