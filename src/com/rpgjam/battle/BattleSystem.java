@@ -127,7 +127,7 @@ private static void applyItemEffects(Character player, int itemSelect, String ke
         player.setDefense(newDefense + player.getDefense());
         Console.dialog("Você usou uma Poção de Defesa e fortaleceu temporariamente sua resistência!");
     } else if (itemSelect == 2) {
-        Double cura = player.getHealth() * 0.5;
+        Double cura = player.getMaxHealth() * 0.5;
         player.setHealth(player.getHealth() + cura);
         Console.dialog("Você usou uma Poção de Cura e recuperou parte da sua saúde!");
     } else if (itemSelect == 3) {

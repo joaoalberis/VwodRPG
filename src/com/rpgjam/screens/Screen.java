@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.rpgjam.Character;
 import com.rpgjam.inputs.Selection;
-import com.rpgjam.story.Adventure;
+import com.rpgjam.story.Nublar;
 import com.rpgjam.utils.Color;
 import com.rpgjam.utils.Console;
 
@@ -13,6 +13,7 @@ public class Screen {
   private Scanner input = new Scanner(System.in);
   private Selection selection = new Selection();
   public Character character;
+  private boolean adventureContinue = false;
 
   public void menu() {
     while (!selected) {
@@ -68,35 +69,63 @@ public class Screen {
 
   public void menuAction() {
     while (!selected) {
-      Console.printCyan(
-          "Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
-      int option = input.nextInt();
-      switch (option) {
-        case 1:
-          adventure();
-          return;
-        case 2:
-          shop();
-          return;
-        case 3:
-          status();
-          return;
-        case 4:
-          inventory();
-          return;
-        case 5:
-          menu();
-          return;
-        default:
-          Console.printRed("Escolha entre as opções sugeridas: 1, 2, 3, 4 ou 5.");
-          continue;
+      if (!adventureContinue){
+        Console.printCyan(
+            "Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
+        int option = input.nextInt();
+        switch (option) {
+          case 1:
+            adventure();
+            return;
+          case 2:
+            shop();
+            return;
+          case 3:
+            status();
+            return;
+          case 4:
+            inventory();
+            return;
+          case 5:
+            menu();
+            return;
+          default:
+            Console.printRed("Escolha entre as opções sugeridas: 1, 2, 3, 4 ou 5.");
+            continue;
+        }
+      }else {
+        Console.printCyan(
+            "Selecione uma ação:\n1. Continuar aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
+        int option = input.nextInt();
+        switch (option) {
+          case 1:
+            return;
+          case 2:
+            shop();
+            return;
+          case 3:
+            status();
+            return;
+          case 4:
+            inventory();
+            return;
+          case 5:
+            menu();
+            return;
+          default:
+            Console.printRed("Escolha entre as opções sugeridas: 1, 2, 3, 4 ou 5.");
+            continue;
+        }
       }
     }
   }
 
   public void adventure() {
-    Adventure adv = new Adventure(character);
-    adv.startStory();
+    //Adventure adv = new Adventure(character);
+    //adv.startStory();
+    Nublar islandOne = new Nublar(character);
+    adventureContinue = islandOne.startIsland1();
+    menuAction();
   }
 
   public void shop() {
@@ -138,9 +167,14 @@ public class Screen {
   }
 
   public void status() {
-    Console.printGreen("Seus status atuais são:\nNivel - " + character.getNivel() + "\nExperiencia Atual - "
-        + character.getExperiencia() + "\nAtaque - " + character.getAtack() + "\nDefesa - " + character.getDefense()
-        + "\nVida - " + character.getHealth() + "\nGold - " + character.getGold());
+    Console.dialogf("%s Seus status atuais são:", Color.BOLD);
+    Console.dialogf("Nivel - %d", character.getNivel());
+    Console.dialogf("Experiencia Atual - %.2f", character.getExperiencia());
+    Console.dialogf("Arma Atual - %s", character.getNameWeapon());
+    Console.dialogf("Ataque - %.2f", character.getAtack());
+    Console.dialogf("Defesa - %.2f", character.getDefense());
+    Console.dialogf("Vida - %.2f", character.getHealth());
+    Console.dialogf("Gold - %.2f", character.getGold());
     String[] options = { "Você retornou ao menu principal" };
     selection.newSelection(1, options, "1- Voltar");
     menuAction();
@@ -155,29 +189,32 @@ public class Screen {
 
   public void newGame() {
     String[] options = {
-        "Guerreiro.",
-        "Mago.",
-        "Assasino.",
-        "Arqueiro."
+        "Espadachim",
+        "Atirador",
+        "Guerreiro",
     };
     Console.clearConsole();
-    Console.dialog("\nVold: Olá jovem aventureiro, me chamo vold vejo que decidiu se aventurar pelas terras de viwod.");
-    Console.dialog("- Qual seria o nome do jovem aventureiro?");
+    Console.dialog("\nVold: Olá jovem pirata, me chamo vold vejo que decidiu se aventurar pelos mares de viwod.");
+    Console.dialog("- Qual seria o nome do jovem pirata?");
     String nick = input.nextLine();
     Console.clearConsole();
 
     Console.dialogf("\nVold: Fico feliz em lhe conhecer %s%s%s", Color.RED, Color.BOLD, nick);
     Console.dialog(
-        "- Agora preciso que você decida entre 4 classes, escolha sabiamente, pois essa classe não poderá ser mudada em nenhum momento de sua aventura.\n");
+        "- Agora preciso que você decida entre 3 estilos de luta, escolha sabiamente, pois seu estilo irá lhe acompanhar por toda sua navegação pirata.\n");
 
     String classe = selection.newSelection(4,
-        options, "1. Guerreiro\n2. Mago\n3. Assasino\n4. Arqueiro\n");
+        options, "1. Espadachim\n2. Atirador\n3. Guerreiro\n");
 
-    character = new Character(classe, nick);
+    Console.dialogf("- Perfeito %s, Você irá aprender e lutará que nem um %s Mas preciso que você diga qual será o nome de seu bando pirata?", Color.RED + Color.BOLD + nick + Color.YELLOW, Color.GREEN + Color.BOLD + classe + Color.YELLOW);
+
+    String bevy = input.nextLine();
+
+    character = new Character(classe, nick, bevy);
     Console.clearConsole();
     Console.dialogf(
-        "\nVold: %s, Agora que você é um %s está apto para enfrentar os desafios de viwod, mas tome cuidado, pois pode dar de cara com um monstro forte.\n",
-        Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.YELLOW, character.getClasse());
+        "\nVold: %s, Agora que você é um %s está apto para enfrentar os desafios do mar de viwod, mas tome cuidado, pois pode dar de cara com uma tripulação mais forte. Desejo sorte em sua navegação e que encontre bons companheiro para o seu bando dos %s\n",
+        Color.RED + Color.BOLD + character.getNickname() + Color.YELLOW, Color.GREEN + Color.BOLD + character.getClasse() + Color.YELLOW, Color.RED + Color.BOLD + character.getBevy());
     menuAction();
   }
 }

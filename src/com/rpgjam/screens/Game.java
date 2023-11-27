@@ -5,7 +5,6 @@ public class Game {
   private Screen screen = new Screen();
 
   public Game() {
-    //screen.shop();
     screen.menu();
   }
 }

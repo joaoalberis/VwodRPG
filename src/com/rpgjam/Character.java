@@ -2,11 +2,17 @@ package com.rpgjam;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.rpgjam.Weapon.Handle;
+import com.rpgjam.Weapon.OldSword;
+import com.rpgjam.Weapon.RustyGun;
+import com.rpgjam.Weapon.Weapon;
 import com.rpgjam.utils.Console;
 
 public class Character {
     private String Classe;
+    private String bevy;
     private String Nickname;
+    private Weapon weapon;
     private int Nivel;
     private Double Experiencia;
     private Double Health;
@@ -17,15 +23,15 @@ public class Character {
     private Map<String, Integer> Inventory;
     private Double requiredExperience;
 
-    public Character(String classe, String nickname) {
+    
+
+    public Character(String classe, String nickname, String bevy) {
         this.Classe = classe;
         this.Nickname = nickname;
+        this.bevy = bevy;
         this.Nivel = 1;
         this.Experiencia = 0.0;
-        this.Health = 10.0;
-        this.maxHealth = 10.0;
-        this.Defense = 5.0;
-        this.Atack = 8.0;
+        verifiedClasse(classe);
         this.Gold = 50.0;
         this.Inventory = new HashMap<String, Integer>() {{
             put("Poção de Cura", 0);
@@ -33,6 +39,39 @@ public class Character {
             put("Poção de Defesa", 0);
         }};
         this.requiredExperience = 50.0;
+    }
+
+    public void changeWeapon(Weapon newWeapon){
+        this.weapon = newWeapon;
+    }
+
+    private void verifiedClasse(String classe){
+        if (classe == "Atirador"){
+            this.setHealth(25.0);;
+            this.setMaxHealth(25.0);
+            this.setAtack(8.5);
+            this.setDefense(5.0);
+            this.changeWeapon(new RustyGun());
+        }else if (classe == "Espadachim"){
+            this.setHealth(23.0);
+            this.setMaxHealth(23.0);
+            this.setAtack(10.0);
+            this.setDefense(5.5);
+            this.changeWeapon(new OldSword());
+        }else if (classe == "Guerreiro"){
+            this.setHealth(25.0);
+            this.setMaxHealth(25.0);
+            this.setAtack(8.0);
+            this.setDefense(6.0);
+            this.changeWeapon(new Handle());
+        }
+    }
+    public double getDamageWeapon() {
+        return this.weapon.getDamage();
+    }
+
+    public String getNameWeapon() {
+        return this.weapon.getName();
     }
     public String getClasse() {
         return this.Classe;
@@ -85,6 +124,10 @@ public class Character {
     
     public void showInventory() {
         System.out.println("Inventario:");
+        if (this.Inventory.isEmpty()){
+            Console.printRed("Inventario não contém item");
+            return;
+        }
         for(Map.Entry<String, Integer> entry : this.Inventory.entrySet()){
             System.out.println(entry.getValue() + "x " + entry.getKey());
         }
@@ -142,9 +185,27 @@ public class Character {
         this.Nivel++;
         this.Experiencia -= this.requiredExperience;
         this.requiredExperience *= 1.3;
-        this.Health = this.maxHealth * 1.35;
-        this.Defense *= 1.15;
-        this.Atack *= 1.1;
+        this.Health = this.maxHealth * 1.5;
+        this.Defense *= 1.3;
+        this.Atack *= 1.25;
         Console.printGreen("\nParabéns! Você alcançou o nivel " + this.Nivel + "!\nVerifique seus novos status.\n");
+    }
+    public String getBevy() {
+        return bevy;
+    }
+    public void setBevy(String bevy) {
+        this.bevy = bevy;
+    }
+    public Double getMaxHealth() {
+        return maxHealth;
+    }
+    public void setMaxHealth(Double maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+    public Double getRequiredExperience() {
+        return requiredExperience;
+    }
+    public void setRequiredExperience(Double requiredExperience) {
+        this.requiredExperience = requiredExperience;
     }
 }
