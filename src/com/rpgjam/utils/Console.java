@@ -1,12 +1,13 @@
 package com.rpgjam.utils;
 
 public class Console extends Color {
+    private static final int TEMPINMILLISECONDS = 50;
 
     public static void dialog(String msg) {
-        System.out.print(YELLOW);
+        System.out.print(GREEN);
         for (char c : msg.toCharArray()) {
             System.out.print(c);
-            sleep(1);
+            sleep(TEMPINMILLISECONDS);
         }
         System.out.println(Color.RESET);
     }
@@ -14,10 +15,39 @@ public class Console extends Color {
     public static void dialogf(String msg, Object... args) {
         String formattedMsg = String.format(msg, args);
 
-        System.out.print(YELLOW);
+        System.out.print(GREEN);
         for (char c : formattedMsg.toCharArray()) {
             System.out.print(c);
-            sleep(10);
+            sleep(TEMPINMILLISECONDS);
+        }
+        System.out.println(Color.RESET);
+    }
+
+    public static void narrator(String msg) {
+        System.out.print(WHITE);
+        for (char c : msg.toCharArray()) {
+            System.out.print(c);
+            sleep(TEMPINMILLISECONDS);
+        }
+        System.out.println(Color.RESET);
+    }
+    
+    public static void enemy(String msg) {
+        System.out.print(RED);
+        for (char c : msg.toCharArray()) {
+            System.out.print(c);
+            sleep(TEMPINMILLISECONDS);
+        }
+        System.out.println(Color.RESET);
+    }
+
+    public static void narratorf(String msg, Object... args) {
+        String formattedMsg = String.format(msg, args);
+
+        System.out.print(WHITE);
+        for (char c : formattedMsg.toCharArray()) {
+            System.out.print(c);
+            sleep(TEMPINMILLISECONDS);
         }
         System.out.println(Color.RESET);
     }
