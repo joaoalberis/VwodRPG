@@ -10,7 +10,6 @@ import com.rpgjam.utils.Color;
 import com.rpgjam.utils.Console;
 
 public class Nublar {
-    // private Selection selection = new Selection();
     private Character character;
     private Scanner input;
 
@@ -19,19 +18,14 @@ public class Nublar {
         input = new Scanner(System.in);
     }
 
-    public boolean startIsland1() {
+    public boolean start() {
         Console.clearConsole();
-        Console.sleep(50);
+        Console.sleep(1000);
         Console.narrator("Você começa sua navegação em vwod, um mar cheio de desafios e inimigos perigosos");
         Console.narrator("- Você começa a navegar com um pequeno bote sem rumo até que avista uma ilha chamada "
                 + (Color.CYAN + "Nublar " + Color.RESET) + "e então decidi atracar seu bote!\n");
-        Console.printWhite("                   v  ~.      v\r\n" + //
-                "          v           /|\r\n" + //
-                "                     / |          v\r\n" + //
-                "              v     /__|__\r\n" + //
-                "                  \\--------/\r\n" + //
-                "~~~~~~~~~~~~~~~~~~~`~~~~~~'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        Console.sleep(5000);
+        Console.sleep(10000);
+        BoatAnimation.boatTrasition(10);
         Console.clearConsole();
         Console.narrator(
                 "- Ao atracar seu bote, você percebe que está acontecendo uma confusão perto da marinha, então decidi ir ver de fininho e encontra uma pessoa acorretanda.");
@@ -49,7 +43,8 @@ public class Nublar {
                 "- Você vai até ele para avisar, após contar é feito um acordo. Onde você o ajudaria a pegar suas armas que foram confiscadas e ele se tornaria um membro do seu bando de piratas.\n");
         Console.narrator(
                 "- Você recupera as armas, mas ao chegar para entregar, vários marinheiros já estavam lá para matar o prisioneiro, então vocês 2 unem forças para derrota-los.");
-
+        Console.sleep(10000);
+        Console.clearConsole();
         BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Guardas da Marinha", 20, 5, 20, 10),
                 input);
 
@@ -64,8 +59,8 @@ public class Nublar {
                 character.removeGold(gold);
             } else
                 Console.narrator("Você derrotou os guardas que iriam executar o prisioneiro com sucesso!");
+            Console.sleep(3000);
             Console.clearConsole();
-            Console.sleep(200);
             Console.narrator(
                     "- Você finalmente conseguiu achar o primeiro tripulante para o seu bando, mas nem tudo acabou\n");
             Console.dialogf("%s: Agora somos companheiros, qual seria o seu nome caro companheiro?",
@@ -77,6 +72,8 @@ public class Nublar {
             Console.narrator("- Enquanto voces conversavam mais marinheiro chegaram.");
             Console.narrator(
                     "- Vocẽs correram para a costa, mas no caminho tinha varios marinheiros mais poderosos que os anteriores.");
+            Console.sleep(10000);
+            Console.clearConsole();
             battleResult = BattleSystem.startBattle(character, new Enemy("Guardas da Marinha 2", 35, 8, 30, 20), input);
             if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
                 if (battleResult == BattleResult.ESCAPE) {
@@ -91,7 +88,7 @@ public class Nublar {
                     Console.narrator(Color.GREEN + "Vocês conseguiram derrotar os guardas que estavam no caminho!");
 
                 Console.narrator(
-                        "- Todos os guardas foram derrotados, porem esperando no pequeno bote estava o capitão da marinha.");
+                        "- Vocês chegam até o bote, porem esperando no pequeno bote estava o capitão da marinha.");
                 Console.narrator("- Você tenta conversar com o capitão da marinha!\n");
                 Console.dialogf("%s: Porque está tentando nos impedir?\n",
                         Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
@@ -103,6 +100,8 @@ public class Nublar {
                 Console.dialog("Oroz: Exatamente, deixe a gente passar ou então teremos que lutar\n");
                 Console.enemy(
                         "Capitão da Marinha: Entendo, então terei que leva-los a força e executa-los para que sejam tratados como exemplo e isso nunca volte acontecer.");
+                Console.sleep(10000);
+                Console.clearConsole();
                 battleResult = BattleSystem.startBattle(character, new Enemy("Capitão da Marinha", 50, 12, 50, 10),
                         input);
                 if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
@@ -116,7 +115,7 @@ public class Nublar {
                         character.removeGold(gold);
                     } else
                         Console.narrator(Color.GREEN
-                                + "- Vocês consiguiram derrotar o Capitaão da Marinha que impedia vocês de fugirem!");
+                                + "- Vocês consiguiram derrotar o Capitão da Marinha que impedia vocês de fugirem!");
                     Console.narrator(
                             "- Agora que não tem mais ninguém no caminho, vocês decidem navegar em busca de novas aventuras!\n");
                     Console.dialog(
@@ -126,6 +125,8 @@ public class Nublar {
                             Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
                     Console.narrator(
                             "Com isso a primeira ilha foi finalizada com sucesso, e sua tripulação seguirá para proxima ilha.");
+                    Console.sleep(6000);
+                    Console.clearConsole();
                     return true;
                 } else {
                     Console.narrator("O " + character.getNickname()

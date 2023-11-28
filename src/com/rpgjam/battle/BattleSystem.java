@@ -103,7 +103,10 @@ public class BattleSystem {
         }
 
         if (isValidSelection(itemSelect, key, value, player)) {
-            applyItemEffects(player, itemSelect, key, value);
+            if(!applyItemEffects(player, itemSelect, key, value)){
+              Console.narrator(Color.RED + "Meu querido, você já ta com a vida cheia, quer curar mais oque?");
+              return false;
+            };
             return true;
         }
     }
@@ -120,7 +123,7 @@ private static boolean isValidSelection(int itemSelect, String key, int value, C
     } else return key.equalsIgnoreCase("Poção de Ataque") && itemSelect == 3 && value > 0;
 }
 
-private static void applyItemEffects(Character player, int itemSelect, String key, int value) {
+private static boolean applyItemEffects(Character player, int itemSelect, String key, int value) {
 
     if (itemSelect == 1) {
         Double newDefense = player.getDefense() * 0.25;
@@ -128,7 +131,7 @@ private static void applyItemEffects(Character player, int itemSelect, String ke
         Console.narrator("Você usou uma Poção de Defesa e fortaleceu temporariamente sua resistência!");
     } else if (itemSelect == 2) {
         Double cura = player.getMaxHealth() * 0.5;
-        player.setHealth(player.getHealth() + cura);
+        if(!healthPlayer(player)) return false;
         Console.narrator("Você usou uma Poção de Cura e recuperou parte da sua saúde!");
     } else if (itemSelect == 3) {
         Double newAttack = player.getAtack() * 0.2;
@@ -137,10 +140,23 @@ private static void applyItemEffects(Character player, int itemSelect, String ke
     }
 
     player.removeItemInventory(key, 1);
+    return true;
 }
 
+  private static boolean healthPlayer(Character player){
+    double healing = player.getMaxHealth() * 0.5;
+    double maxHealing = player.getMaxHealth() - player.getHealth();
+
+    if(maxHealing == 0) return false;
+    else {
+      double actualHealing = Math.min(healing, maxHealing);
+      player.setHealth(player.getHealth() + actualHealing);
+      return true;
+    }
+  }
+
   private static void playerAttack(Character player, Enemy enemy) {
-    double damageDealt = player.getAtack();
+    double damageDealt = player.getAtack() + player.getDamageWeapon();
     enemy.takeDamage(damageDealt);
     Console.narratorf("Você ataca os %s e causa %.1f de dano!", enemy.getName(), damageDealt);
   }

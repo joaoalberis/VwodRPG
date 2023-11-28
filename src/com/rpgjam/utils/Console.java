@@ -12,6 +12,15 @@ public class Console extends Color {
         System.out.println(Color.RESET);
     }
 
+    public static void dialog(String msg, int TEMPINMILLISECONDS) {
+        System.out.print(GREEN);
+        for (char c : msg.toCharArray()) {
+            System.out.print(c);
+            sleep(TEMPINMILLISECONDS);
+        }
+        System.out.println(Color.RESET);
+    }
+
     public static void dialogf(String msg, Object... args) {
         String formattedMsg = String.format(msg, args);
 
