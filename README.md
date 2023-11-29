@@ -39,7 +39,7 @@ Divirta-se explorando o VwodRPG e boa sorte em sua jornada pirata!
 Clone o projeto
 
 ```bash
-  git clone https://github.com/GabrielLicar/VwodRPG.git
+  git clone https://github.com/JoaoAlberis/VwodRPG.git
 ```
 
 Entre no diretório do projeto

@@ -6,7 +6,9 @@ import com.rpgjam.Character;
 import com.rpgjam.inputs.Selection;
 import com.rpgjam.story.Avalon;
 import com.rpgjam.story.Blefuscu;
+import com.rpgjam.story.Meridium;
 import com.rpgjam.story.Nublar;
+import com.rpgjam.story.Ouroboros;
 import com.rpgjam.utils.Color;
 import com.rpgjam.utils.Console;
 
@@ -120,12 +122,22 @@ public class Screen {
     Nublar islandOne = new Nublar(character);
     Avalon islandTwo = new Avalon(character);
     Blefuscu islandThree = new Blefuscu(character);
+    Meridium islandFour = new Meridium(character);
+    Ouroboros islandFive = new Ouroboros(character);
     adventureContinue = islandOne.start();
     menuAction();
     adventureContinue = islandTwo.start();
     menuAction();
     adventureContinue = islandThree.start();
+    menuAction();
+    adventureContinue = islandFour.start();
+    menuAction();
+    adventureContinue = islandFive.start();
+    Epilogue.epilogue(character);
+    menu();
   }
+
+  
 
   public void status() {
     Console.clearConsole();

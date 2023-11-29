@@ -6,7 +6,6 @@ import com.rpgjam.Character;
 import com.rpgjam.battle.BattleResult;
 import com.rpgjam.battle.BattleSystem;
 import com.rpgjam.enemy.Enemy;
-import com.rpgjam.utils.Color;
 import com.rpgjam.utils.Console;
 
 public class Blefuscu {
@@ -19,162 +18,109 @@ public class Blefuscu {
 
     public boolean start() {
         Console.clearConsole();
-        Console.sleep(1000);
-        Console.narrator("- A Navegadora do grupo está conduzindo o barco para a ilha mais proxima chamada Blefuscu");
-        Console.narrator("*Após alguns dias navegando em mar aberto, a ilha que estavam a procura é avistada*\n");
-        Console.sleep(8000);
         BoatAnimation.boatTrasition(10);
+        Console.narrator("[Narrador]: A viagem até Blefuscu é tranquila, e ao chegar, vocês se deparam com uma ilha repleta de construções feitas com perfeição pelos habilidosos moradores.\n");
+        Console.narrator("[Narrador]: Vocês começam a procurar por informações sobre um bom carpinteiro e são indicados a ir até a oficina de um talentoso artesão chamado Grizzle. Ao chegar lá, encontram Grizzle ocupado em seu trabalho.\n");
+        Console.dialog("[Grizzle]: Olá, como posso ajudar vocês?\n");
+        Console.dialogf("[%s]: Estamos em busca de um carpinteiro habilidoso para reparar nosso navio.\n", character.getNickname());
+        Console.dialog("[Grizzle]: Vieram ao local correto, vejo que têm um belo barco precisando de cuidados. Ficarei feliz em ajudar, deixe-me dar uma olhada nos estragos.\n");
+        Console.narrator("[Narrador]: Grizzle examina o navio, avaliando os danos e fazendo planos para os reparos necessários.\n");
+        Console.dialog("[Grizzle]: Não se preocupem, os danos não foram muitos, mas vai levar algum tempo. Enquanto isso, porque não aproveitam para conhecer a cidade.\n");
+        Console.dialogf("[%s]: Ótimo! Enquanto isso, o que há para fazer nesta ilha?\n", character.getNickname());
+        Console.dialog("[Grizzle]: Eu ouvi recentemente um rumor sobre um tesouro, aparentemente ele esta escondido na colina mais alta da ilha m uma caverna, porque não aproveitam o tempo e vão la examinar?\n");
+        Console.dialogf("[%s]: Acho que é isso, oque vocês acham de irmos procurar pelo tesouro?\n", character.getNickname());
+        Console.dialog("[Oklama]: Acho perfeito, se acharmos poderemos repor o dinheiro que gastamos!\n");
+        Console.dialog("[Liz]: Tambem concordo em irmos!\n");
+        Console.narratorf("[Narrador]: Como todos os tripulantes concordam, %s e sua tripulação parte para a colina mais alta!\n", character.getNickname());
+        Console.narrator("[Narrador]: Na subida pela colina, Eles foram supreendidos por um grupo de monstros!\n");
+        Console.sleep(12000);
         Console.clearConsole();
-        Console.narrator(
-                "- Vocês atracam os 2 navios no litoral, mas não esperavam que seriam recebido por um cidadão segurando um estilingue com 3 crianças medrosas para proteger a cidade de piratas!");
-        Console.narrator("*Você tenta dialogar com eles.*");
-        Console.dialogf("\n%s: Não precisam se assustar não estamos aqui para invadir ou saquear, apenas estamos se aventurando em busca de companheiros! Quais são seus nomes?\n",
-                Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-        Console.dialog("Pposu: Me chamo Pposu e essa é minha tripulação não deixarei que entrem nessa ilha!\n");
-        Console.dialogf("\n%s: Você me é familiar, acho que conheço o seu pai, ele é da tripulação do Sknahs, seu nome é Pposay?\n",
-                Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-        Console.dialog("Pposu: De onde você conhece o meu pai?\n");
-        Console.dialogf("\n%s: Seu pai me contava muitas historias quando ele visitava minha ilha, ele falava muito de seu filho! Não viemos para lutar!\n",
-                Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-        Console.dialog("Pposu: Se você conhece meu pai você não deve querer fazer mal a essa ilha!\n");
-        Console.narrator(
-                "*Vocês ficam pela ilha por alguns dias aproveitando e conhecendo a ilha*\n");
-        Console.narrator("- Pposu conta para vocês que ele tem uma amiga que mora na masão e ele gosta de contar historias para ela, embora a maioria seja mentira!\n");
-        Console.narrator("- Você e Pposu está andando pela colina quando avistam 2 pessoas conversando sobre invadir a ilha, além disso eles falam algo sobre o mordomo da amiga de Pposu, disseram que ele pertence a um bando pirata e planeja mata-la para pegar a herança!");
-        Console.narrator("*Pposu tenta avisar a todos os cidadões, mas ninguem acredita nele pelo seu historico de mentira, então ele decidi que irá enfrentar os piratas sozinho!*");
-        Console.narrator("- Pposu tenta ir ate a casa de sua amiga Ayak e alerta-la, porem o mordomo Erodahslk o expulsa antes dele conseguir falar com ela!");
-        Console.narrator("- Sua tripulação decidi ajudar Pposu, mas cada um quer algo em troca!");
-        Console.dialogf("\n%s: Eu quero muita carne após a luta!\n",
-                Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-        Console.dialog("Oroz: Eu quero muito saquê");
-        Console.dialog("Iman: Eu quero todo o tesouro que tiver dentro do navio deles!");
-        Console.narrator("*Após algumas horas os invasores chegaram*");
-        Console.dialog("Oroz: Eles chegaram em 3 será 1 para cada!");
-        Console.narrator("- Iman fica com o mais fraco para distrai-lo enquanto vocês derrotam os outros 2, Zoro pega os irmãos e você fica com o ultimo e mais forte!");
-        Console.dialog("Oroz: Vocês 2 ai, eu irei lutar com vocês não estão permitidos subir nessa colina!");
-        Console.sleep(15000);
-        Console.clearConsole();
-        BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Ognaj, O Hipnotizador", 30, 5, 50, 15),
-                input);
+        BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Monstros", 30, 5, 50, 15), input, true);
 
         if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
             if (battleResult == BattleResult.ESCAPE) {
                 int randomGold = (int) (Math.random() * 15) + 1;
                 double gold = character.getGold() * (randomGold / 100.0);
                 System.out.println(randomGold);
-                Console.narrator("Você esperou ele lhe atacar e desviou, fazendo com que Ognaj ficasse preso no oleo que estava no chão!");
+                Console.narrator("Eles eram fortes demais, então vocês decidem fugir e continuar a subir a colina!");
                 Console.narrator(
-                        "Acabou deixando cair um pouco de ouro no oleo."
-                                + gold + " golds");
+                        "Um ganho furou um de seus bolsos e uma quantia de gold caiu."
+                                + gold + " golds\n");
                 character.removeGold(gold);
             } else
-                Console.narrator("Você conseguiu derrotar o Ognaj, O hipnotizador!");
-            Console.sleep(3000);
-            Console.clearConsole();
-            Console.narrator(
-                    "- Após derrotar seu oponente você vai ajudar o oroz\n");
-            Console.dialogf("\n%s: Oroz aguenta mais um pouco, ja estou indo lhe ajudar\n",
-                Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-            Console.narrator("*Você corre até onde oroz está!*");
-            Console.sleep(3000);
-            Console.clearConsole();
-            battleResult = BattleSystem.startBattle(character, new Enemy("Gemêo 1", 55, 8, 70, 35), input);
-            if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
-                if (battleResult == BattleResult.ESCAPE) {
-                    int randomGold = (int) (Math.random() * 15) + 1;
-                    double gold = character.getGold() * (randomGold / 100.0);
-                    System.out.println(randomGold);
-                    Console.narrator(
-                            "Enquanto você fugia acabou deixando cair um pouco de ouro."
-                                    + gold + " golds");
-                    character.removeGold(gold);
-                } else
-                    Console.narrator(Color.GREEN + "Você derrotou o primeiro gemeo, como será que o oroz está");
+                Console.narrator("Vocês conseguiram derrotar com exito o grupo de monstros!\n");
+            Console.dialogf("[%s]: Vamos pessoal, ja consigo ver o topo da colina, se tivermos sorte será facil achar esse tesouro!\n", character.getNickname());
+            Console.dialog("[Oklama]: Com certeza não acharemos facil, se nao alguem ja o teria achado!\n");
+            Console.narrator("[Narrador]: Após algumas horas procurando pela colina, vocês acham uma caverna e decidem entrar!\n");
+            Console.dialogf("[%s]: Será que essa é a caverna que o rumor citava?\n", character.getNickname());
+            Console.dialog("[Liz]: So descobriremos, caso tenha algum tesouro ai dentro!\n");
+            Console.dialog("[Oklama]: Vamos entrar logo!\n");
+            Console.narratorf("[Narrador]:  O tripulação %s entra na caverna e vai a explorando.\n", character.getBevy());
+            Console.dialogf("[%s]: Nossa, essa caverna é gigante nem parece que esta numa colina!\n", character.getNickname());
+            Console.dialog("[Liz]: Acho que ja devemo estar perto de terminar a exploração!\n");
+            Console.narrator("[Narrador]: Apos mais alguns minutos andando, vocês finalmente chegam ao final da caverna!\n");
+            Console.dialogf("[%s]: Vejam ha um baú em cima daquela pedra, acho que conseguimos encontrar o tesouro!\n", character.getNickname());
+            Console.dialog("[Liz]: Estou achando meio facil isso, embora demoramos horas andando não acho que seria tão simples assim!\n");
+            Console.narrator("[Narrador]: Liz estava certa, de repente um grande estrondo na caverna, ao olharem para cima aparece um dragão!\n");
+            Console.dialogf("[%s]: Você e essa sua boca liz, agora teremos que derrotar esse dragão para conseguir sair daqui com vida e com o tesouro!\n", character.getNickname());
 
-                Console.narrator(
-                        "- Oroz ja tinha derrotado seu oponente!");
-                Console.dialogf("%s: Finalmente conseguimos acabar com todos, não vejo a hora de comer bastante carne!\n",
-                        Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-                Console.dialog("Oroz: Espero que tenham muito saquê, porque hoje vamos festejar bastante!\n");
-                Console.dialog("Iman: Vou aproveitar pra analisar o barco deles e pegar todos as coisas valiosas!");
-                Console.narrator("- Enquanto vocês conversavam chegou uma pessoa na colina, aparentemente ele é da tripulação!");
-                Console.narrator("- Quando Pposu olha para traz, ele identifica o 4 membro e ele é o mordomo de sua amiga Ayak!");
-                Console.enemy("Erodahslk: Vocês acham que venceram? não deixarei que acabem com meu plano de anos dessa forma, se preparem para morrer!");
-                Console.narrator("*Erodahslk conta seu plano, que ele formulou e começou a por em pratica a anos*");
-                Console.dialogf("%s: Pensei que poderia ir comer carne em paz!\n",
-                        Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-                Console.narrator("*Todos se juntam para derrotar Erodahslk*");
-                Console.sleep(8000);
+            Console.sleep(7000);
+            Console.clearConsole();
+            battleResult = BattleSystem.startBattle(character, new Enemy("Dragão", 55, 8, 70, 35), input, false);
+            if (battleResult == BattleResult.VICTORY) {
+                Console.dialogf("[%s]: Esse dragão era incrivelmente forte, ainda bem que viemos nos 3 para cá, agora vamos ver oque tem dentro desse baú!\n", character.getNickname());
+
+                Console.narrator("[Narrador]: Ao abrir o bau, vocês se deparam com varias peças de ouro e ouro bruto!\n");
+                Console.dialogf("[%s]: Haha, nossas finanças estão salvas, com isso teremos mais que o suficiente para pagar o barco!\n", character.getNickname());
+                Console.dialog("[Liz]: Vamos voltar imediatamente, pelo tempo demoramos para chegar aqui e vamos demorar para voltar, o navio deverá esta pronto!\n");
+                Console.narrator("[Narrador]: Vocês começam a voltar todo o caminho pecorrido, horas se passam quando estavam quase chegando a saida, um barulho vindo da entrada, alguns minutos depois vocês se deparam com outro dragão!\n");
+                Console.dialog("[Liz]: Obvio que teria outro dragão, provavelmente o dragão que derrotamos era o fêmea, esse deve ser o macho!\n");
+                Console.dialogf("[%s]: espero que as fêmeas sejam as mais fortes do grupo!\n", character.getNickname());
+                Console.sleep(5000);
                 Console.clearConsole();
-                battleResult = BattleSystem.startBattle(character, new Enemy("Erodahslk", 70, 12, 100, 50),
-                        input);
-                if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
-                    if (battleResult == BattleResult.ESCAPE) {
-                        int randomGold = (int) (Math.random() * 15) + 1;
-                        double gold = character.getGold() * (randomGold / 100.0);
-                        System.out.println(randomGold);
-                        Console.narrator("Ele foi atacar vocẽs e acabou caindo num navio que passava pelas costa!");
-                        Console.narrator(
-                                "Infelizmente quando ele caiu acabou puxando um pouco do seu gold."
-                                        + gold + " golds");
-                        character.removeGold(gold);
-                    } else
-                        Console.narrator(Color.GREEN
-                                + "- Você e sua tripulação conseguiu derrotar Erodahslk com sucesso.");
-                    Console.narrator(
-                            "Oroz: Finalmente, agora essa ilha ta livre e protegida.\n");
-                    Console.dialogf(
-                            "%s: Agora que finalmente acabou vamos fazer uma festa e comer bastante!\n",
-                            Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-                    Console.dialog("Iman: Enquanto vocês vão preparar o banquete, eu vou ver oque tinha no navio deles!");
-                    Console.enemy(
-                            "Pposu: *Chorando* Muito obrigado pela ajuda pessoal, muito obrigado mesmo.\n");
-                    Console.narrator(
-                            "- Vocês passaram a noite toda festejando a vitoria");
-                    Console.narrator("- No dia seguinte Ayka vem agradecer a todos e diz que tem um presente para os " + character.getBevy() + " e pede que esperem alguns dias!");
-                    Console.narrator("*Alguns dias depois*");
-                    Console.dialog("Ayka: Oi pessoal, o presente que prometi para vocês está na costa, vamos la!\n");
-                    Console.narrator("*Vocês vão até a costa*");
-                    Console.dialog("Ayka: Como agradedimento quero entregar esse barco para que sua tripulação possa navegar nesse imenso mar e conquistar varias coisas!");
-                    Console.dialogf(
-                            "%s: Nossa tem uma vela nele poderemos pintar nossa bandeira pirata!\n",
-                            Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-                    Console.narrator(
-                            "Oroz: Finalmente um navio digno!\n");
-                    Console.narrator(
-                            "Iman: Não precisaremos mais andar no barco da tripulação do Yggub\n");
-                    Console.dialogf(
-                            "%s: Pposu quero que você vire nosso companheiro e entre para a tripulação!\n",
-                            Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-                    Console.dialog("Pposu: Não sei se posso aceitar, não posso deixar todos aqui sem minha proteção!\n");
-                    Console.dialog("Ayka: Pode ir Pposu sempre foi seu sonho ter aventuras no mar igual seu pai, você poderá navegar e depois voltar para cá e contar todas suas aventuras com seus companheiros para mim!");
-                    Console.dialog("Pposu: vou pensar!");
-                    Console.narrator("*Alguns dias passam*");
-                    Console.dialog("Iman: Acho que está na hora de irmos, acho que o Pposu não vai querer se juntar a tripulação!");
-                    Console.dialogf(
-                            "Oroz e %s: Vamos!\n",
-                            Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN);
-                    Console.narrator("- Quando vocês tavam perto de desatracar o navio, chega Pposu");
-                    Console.dialog("Pposu: Eu vou com vocês, eu quero navegar e descobrir esse imenso mar de viwod");
-                    Console.narrator("Com isso você finaliza mais uma ilha, espero que esteja gostando da historia e de sua aventura, e não esqueça de passar na loja e comprar poções ou armas melhores!");
-                    Console.sleep(10000);
+                battleResult = BattleSystem.startBattle(character, new Enemy("Dragão Macho", 70, 12, 100, 50), input, false);
+                if (battleResult == BattleResult.VICTORY) {
+                        Console.narrator("[Narrador]: Vocês conseguiram subjugar o dragão, porém Oklama ficou severamente ferido, vocês tem que leva-lo urgentemente para receber cuidados!\n");
+                    Console.dialogf("[%s]: Liz você leva o tesouro, eu irei com Oklama na frente.\n", character.getNickname());
+                    Console.dialog("[Liz]: Ok.\n");
+                    Console.narratorf("[Narrador]: %s pega Oklama e corre intensamente e sem descanso, felizmente ele consegue achar um curandeiro na ilha, mesmo que ela seja de carpinteiros.\n", character.getNickname());
+                    Console.dialogf("[%s]: Olhe meu companheiro, tivemos uma intensa luta com 2 dragões conseguimos vencer, mas ele foi severamnente ferido!\n", character.getNickname());
+                    Console.dialog("[Curandeiro]: Eu posso ajuda-lo, mas vocẽ acabou de falar que enfrentou 2 dragões?\n");
+                    Console.dialogf("[%s]: Exatamente!\n", character.getNickname());
+                    Console.dialog("[Curandeiro]: Eu vou ajuda-lo, mas preciso que em troca você me traga, algumas escamas do dragão!\n");
+                    Console.dialogf("[%s]: Não se preocupe, eu vou imediatamente pegar!\n", character.getNickname());
+                    Console.narrator("[Narrador]: Você volta imediatamente para a caverna pegar algumas escamas!\n");
+                    Console.narrator("[Narrador]: Vocẽ pega todas as escamas necessarias e volta ao curandeiro, ao chegar você entrega as escamas a ele, seu companheiro ja foi tratado e se recuperando.\n");
+                    Console.narrator("[Narrador]: Alguns dias se passam e Oklama está melhor, então vocês decidem ir pegar o navio.\n");
+                    Console.dialogf("[%s]: Grizzle desculpa a demora, fomos atras do tesouro que você mencionou, ele realmente existia, mas enfretamos problemas, meu companheiro foi ferido por um dragão, por isso demoramos a vim!", character.getNickname());
+                    Console.dialog("[Grizzle]: Vocês realmente acharam o tesouro, pensei que era apenas um boato, mas que historia é essa de dragão pensei que eles estavam extintos!\n");
+                    Console.dialogf("[%s]: pelo visto não, mas talvez agora estejam tivermos que matar 2 para conseguir sair da caverna, onde o tesouro estava guardado. E nosso barco já esta pronto?\n", character.getNickname());
+                    Console.dialog("[Grizzle]: Sim, ele está pronto faz um tempo, ja estava pensando que vocês tinham desistido dele!\n");
+                    Console.dialogf("[%s]: Hehe que nada, ele é nosso primeiro barco, não iriamos deixa-lo assim, aqui esta o pagamento pelo concerto.\n", character.getNickname());
+                    Console.dialog("[Grizzle]: Obrigado, boa aventura para vocês, qualquer coisa podem voltar aqui!\n");
+                    Console.narratorf("[Narrador]: Com o tesouro em mãos e o navio reparado, a tripulação liderada por %s parte de Blefuscu rumo à próxima ilha em sua jornada.\n", character.getNickname());
+                    Console.dialogf("[%s]: Finalmente, estamos prontos para novas aventuras! Para onde devemos ir agora?", character.getNickname());
+                    Console.dialog("[Liz]: Temos algumas opções de ilhas para explorar. Podemos escolher entre a ilha de Meridium, conhecida por suas riquezas naturais, ou a ilha de Zephyr, famosa por seus fortes ventos que impulsionam a navegação.\n");
+                    Console.dialogf("[%s]: Vamos para a ilha de Meridium. Parece um lugar cheio de oportunidades e riquezas naturais.\n", character.getNickname());
+                    Console.narrator("Parabéns pela conclusão de mais uma ilha, compre itens e se abasteça para os proximos desafios!");
+                    Console.sleep(13000);
                     Console.clearConsole();
                     return true;
                 } else {
                     Console.narrator("O " + character.getNickname()
-                            + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DO Erodahslk!)");
+                            + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DO DRAGÃO MACHO!)");
                     Console.sleep(2000);
                     return false;
                 }
             } else {
                 Console.narrator("O " + character.getNickname()
-                        + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DOS PIRATAS!)");
+                        + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DO DRAGÃO!)");
                 Console.sleep(2000);
                 return false;
             }
         } else {
             Console.narrator("O " + character.getNickname()
-                    + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DOS PIRATAS!)");
+                    + " infelizmente foi derrotado, sua jornada acaba aqui! (LA ELE MIL VEZES, LEVOU POR TRAZ DOS MONSTROS!)");
             Console.sleep(2000);
             return false;
         }

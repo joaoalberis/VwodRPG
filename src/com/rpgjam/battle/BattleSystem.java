@@ -12,16 +12,16 @@ import com.rpgjam.utils.Console;
 public class BattleSystem {
   private static Selection selection = new Selection();
 
-  public static BattleResult startBattle(Character player, Enemy enemy, Scanner sc) {
-    Console.narratorf(Color.BOLD + Color.RED + "\n%s apareceram!\n", enemy.getName());
+  public static BattleResult startBattle(Character player, Enemy enemy, Scanner sc, boolean allowedRunEscape) {
+    Console.narratorf(Color.BOLD + Color.RED + "\n%s apareceu!\n", enemy.getName());
 
     while (player.isAlive() && enemy.isAlive()) {
       displayBattleStatus(player, enemy);
 
-      String action = getPlayerAction();
+      String action = getPlayerAction(allowedRunEscape);
       if (action.equalsIgnoreCase("item")) {
         while (!processPlayerAction(action, player, enemy, sc)) {
-          action = getPlayerAction();
+          action = getPlayerAction(allowedRunEscape);
           if (action == "Fugir" || action == "Atacar") break;
         }
       } 
@@ -36,7 +36,9 @@ public class BattleSystem {
     }
 
     if (player.isAlive()) {
-      Console.narrator("\nVocê venceu a batalha!");
+      Console.printGreen("\nVocê venceu a batalha!");
+      Console.printGreen("Você recebeu " + enemy.getExperience() + " de experiencia!");
+      Console.printGreen("Você recebeu " + enemy.getGold() + " de Gold!\n");
       player.addExperience(enemy.getExperience());
       player.addGold(enemy.getGold());
       return BattleResult.VICTORY;
@@ -55,15 +57,17 @@ public class BattleSystem {
 
   }
 
-  private static String getPlayerAction() {
+  private static String getPlayerAction(boolean allowedRunEscape) {
     String[] options = {
         "Atacar",
         "Item",
         "Fugir",
     };
+    String option;
+    if (allowedRunEscape) option = selection.newSelection(3, options, "Escolha sua ação:\n1. Atacar\n2. Usar Item\n3. Fugir");
+    else option = selection.newSelection(2, options, "Escolha sua ação:\n1. Atacar\n2. Usar Item\n3. Fugir(Indisponivel nessa luta!)");
 
-    String option = selection.newSelection(3,
-        options, "Escolha sua ação:\n1. Atacar\n2. Usar Item\n3. Fugir");
+     
     Console.clearConsole();
     return option;
   }
@@ -130,7 +134,6 @@ private static boolean applyItemEffects(Character player, int itemSelect, String
         player.setDefense(newDefense + player.getDefense());
         Console.narrator("Você usou uma Poção de Defesa e fortaleceu temporariamente sua resistência!");
     } else if (itemSelect == 2) {
-        Double cura = player.getMaxHealth() * 0.5;
         if(!healthPlayer(player)) return false;
         Console.narrator("Você usou uma Poção de Cura e recuperou parte da sua saúde!");
     } else if (itemSelect == 3) {

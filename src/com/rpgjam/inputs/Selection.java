@@ -22,9 +22,9 @@ public class Selection {
       }
       if (i == options - 1) {
         Console.clearConsole();
-        Console.printRed("\nSelecione um valor válido!");
+        Console.printRed("\nSelecione uma ação valida!");
         Console.printPurple(message);
-        i = 0;
+        i = -1;
         optionSelect = input.nextInt();
       }
     }
