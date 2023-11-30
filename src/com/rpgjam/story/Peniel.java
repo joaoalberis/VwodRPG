@@ -8,18 +8,18 @@ import com.rpgjam.battle.BattleSystem;
 import com.rpgjam.enemy.Enemy;
 import com.rpgjam.utils.Console;
 
-public class Ouroboros {
+public class Peniel {
     private Character character;
     private Scanner input = new Scanner(System.in);
 
-    public Ouroboros(Character character) {
+    public Peniel(Character character) {
         this.character = character;
     }
 
     public boolean start() {
         BoatAnimation.boatTrasition(10);
         Console.clearConsole();
-        Console.narrator("[Narrador]: A jornada até a Ilha de Ouroboros é desafiadora, mas ao chegarem, vocês se deparam com uma paisagem majestosa, repleta de ruínas antigas e segredos enterrados.\n");
+        Console.narrator("[Narrador]: A jornada até a Ilha de Peniel é desafiadora, mas ao chegarem, vocês se deparam com uma paisagem majestosa, repleta de ruínas antigas e segredos enterrados.\n");
         Console.narrator("[Narrador]: Rumores sobre um artefato lendário circulam entre os habitantes locais, alimentando as esperanças de sua tripulação em obter riquezas incomparáveis.\n");
         Console.dialog("[Liz]: Olhem só para esse lugar! Parece que estamos em uma era antiga.\n");
         Console.dialog("[Oklama]: Espero que esse artefato realmente exista e seja tão valioso quanto as lendas dizem.\n");
@@ -33,12 +33,13 @@ public class Ouroboros {
         Console.enemy("[Guardião Ancestral]: Apenas os corajosos podem passar por aqui. Quem são vocês?\n");
         Console.dialogf("[%s]: Somos a tripulação %s. Estamos em busca do artefato lendário.\n", character.getNickname(), character.getBevy());
         Console.enemy("[Guardião Ancestral]: Se quiserem passar, terão que provar sua força.\n");
-        Console.sleep(8000);
+        
+        System.out.println("Aperte ENTER para continuar...");
+        input.nextLine();
+
         Console.clearConsole();
-        BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Guardiões Ancestrais", 30, 5, 50, 15), input, false);
+        BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Guardiões Ancestrais", 240, 77, 120, 60), input, false);
         if (battleResult == BattleResult.VICTORY) {
-            Console.sleep(2000);
-            Console.clearConsole();
             Console.dialog("[Oklama]: Esses guardiões são mais resistentes do que eu imaginava.\n");
             Console.dialog("[Liz]: E parece que a jornada está apenas começando. Continuem com cuidado pessoal.\n");
             Console.dialog("[Morador Local]: Poucos ousam desafiar os guardiões, Vocês são corajosos.\n");
@@ -48,9 +49,12 @@ public class Ouroboros {
             Console.narrator("[Narrador] À medida que se aproximavam do centro do tempo, a prese\n");
             Console.enemy("[Guardião]: Aqueles que desejam o tesouro devem provar ser merecedores. Estão prontos?\n");
             Console.dialog("[Oklama]: Mais do que nunca!\n");
-            Console.sleep(6000);
+            
+            System.out.println("Aperte ENTER para continuar...");
+            input.nextLine();
+
             Console.clearConsole();
-            battleResult = BattleSystem.startBattle(character, new Enemy("Guardião", 55, 8, 70, 35), input, false);
+            battleResult = BattleSystem.startBattle(character, new Enemy("Guardião", 260, 79, 163, 35), input, false);
             if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
                 Console.sleep(2000);
                 Console.clearConsole();
@@ -61,9 +65,12 @@ public class Ouroboros {
                 Console.dialogf("[%s]: Não podemos deixar que atrapalhem nossa busca. Estejam prontos para o confronto.\n", character.getNickname());
                 Console.enemy("[Caçador Rival]: Parece que chegaram tarde demais. Essa riqueza será nossa!\n");
                 Console.dialogf("[%s]: Não conte com isso!\n", character.getNickname());
-                Console.sleep(3000);
+                
+                System.out.println("Aperte ENTER para continuar...");
+                input.nextLine();
+
                 Console.clearConsole();
-                battleResult = BattleSystem.startBattle(character, new Enemy("Caçador", 70, 12, 100, 50), input, false);
+                battleResult = BattleSystem.startBattle(character, new Enemy("Caçador", 150, 50, 100, 50), input, false);
                 if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
                     Console.sleep(2000);
                     Console.clearConsole();
@@ -77,9 +84,12 @@ public class Ouroboros {
                     Console.dialogf("[%s]: Esse guardião deve ser o final, so pela sua presença exala uma áurea poderosa, pessoal se prepare, esse será nosso ultimo desafio!\n", character.getNickname());
                     Console.dialog("[Oklama]: Estava esperando por isso!\n");
                     Console.enemy("[Guardião Final]: Vocês estão confiantes, eu admito que vocês tem muita corajem e ego alto, mas não consiguiram tirar o tesouro daqui, estou guardando esse templo a mais de mil anos, e nunca ninguem conseguiu!\n");
-                    Console.sleep(3000);
+                    
+                    System.out.println("Aperte ENTER para continuar...");
+                    input.nextLine();
+
                     Console.clearConsole();
-                    battleResult = BattleSystem.startBattle(character, new Enemy("Guardião Final", 70, 12, 100, 50), input, false);
+                    battleResult = BattleSystem.startBattle(character, new Enemy("Guardião Final", 350, 120, 500, 50), input, false);
                     if (battleResult == BattleResult.VICTORY) {
                         Console.sleep(2000);
                         Console.clearConsole();
@@ -90,11 +100,14 @@ public class Ouroboros {
                         Console.dialog("[Liz]: Incrivel, além de todo esse tesouro, um calice banhado a ouro com 6 pedras de ferro negro, so esse calice deve vale um valor imensuravel, com apenas 1 dessas pedras pode ser feita uma das melhores armas!\n");
                         Console.dialogf("[%s]: Primeiro vamos sair daqui!\n", character.getNickname());
                         Console.narrator("[Narrador]: Vocês voltam para o vilarejo local!\n");
-                        Console.dialogf("[Morador Local]: Oi pessoal, vejo que realmente consiguiram, irei ajuda-los a ecoar o nome de vocês por toda vwood, como os piratas dos(as) %s que conseguiu o tesouro da ilha Ouroboros.\n", character.getBevy());
+                        Console.dialogf("[Morador Local]: Oi pessoal, vejo que realmente consiguiram, irei ajuda-los a ecoar o nome de vocês por toda vwood, como os piratas dos(as) %s que conseguiu o tesouro da ilha Peniel.\n", character.getBevy());
                         Console.dialogf("[%s]: Fico agradecido, infelizmente essa será nossa ultima aventura!\n", character.getNickname());
                         Console.dialog("[Liz]: Pelo menos conseguimos alcançar nosso objetivo!\n");
                         Console.narratorf("[Narrador]: Com isso a aventura da tripulação %s foi encerrada.", character.getBevy());
-                        Console.sleep(5000);
+                        
+                        System.out.println("Aperte ENTER para continuar...");
+                        input.nextLine();
+
                         Console.clearConsole();
                         return true;
                     } else {

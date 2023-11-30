@@ -4,6 +4,6 @@ import com.rpgjam.Weapon.Weapon;
 
 public class PistolaDupla extends Weapon{
     public PistolaDupla(){
-        super("Pistola Dupla", 18);
+        super("Pistola Dupla", 15);
     }
 }

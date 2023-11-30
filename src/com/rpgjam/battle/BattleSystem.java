@@ -13,7 +13,7 @@ public class BattleSystem {
   private static Selection selection = new Selection();
 
   public static BattleResult startBattle(Character player, Enemy enemy, Scanner sc, boolean allowedRunEscape) {
-    Console.narratorf(Color.BOLD + Color.RED + "\n%s apareceu!\n", enemy.getName());
+    Console.narratorf(Color.BOLD + Color.RED + "\n%s apareceu(ram)!\n", enemy.getName());
 
     while (player.isAlive() && enemy.isAlive()) {
       displayBattleStatus(player, enemy);
@@ -130,14 +130,14 @@ private static boolean isValidSelection(int itemSelect, String key, int value, C
 private static boolean applyItemEffects(Character player, int itemSelect, String key, int value) {
 
     if (itemSelect == 1) {
-        Double newDefense = player.getDefense() * 0.25;
+        Double newDefense = player.getDefense() * 0.1;
         player.setDefense(newDefense + player.getDefense());
         Console.narrator("Você usou uma Poção de Defesa e fortaleceu temporariamente sua resistência!");
     } else if (itemSelect == 2) {
         if(!healthPlayer(player)) return false;
         Console.narrator("Você usou uma Poção de Cura e recuperou parte da sua saúde!");
     } else if (itemSelect == 3) {
-        Double newAttack = player.getAtack() * 0.2;
+        Double newAttack = player.getAtack() * 0.05;
         player.setAtack(newAttack + player.getAtack());
         Console.narrator("Você usou uma Poção de Ataque");
     }
@@ -165,7 +165,7 @@ private static boolean applyItemEffects(Character player, int itemSelect, String
   }
 
   private static void enemyAttack(Character player, Enemy enemy) {
-    double damageDealt = enemy.getDamage() - player.getDefense() / 2;
+    double damageDealt = enemy.getDamage() - player.getDefense();
     player.takeDamage(damageDealt);
     Console.narratorf("Os %s atacam você e causa %.1f de dano!\n", enemy.getName(), damageDealt);
   }

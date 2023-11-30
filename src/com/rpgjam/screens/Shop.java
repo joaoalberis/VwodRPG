@@ -45,9 +45,9 @@ public class Shop {
 
     switch (classes) {
       case "Espadachim":
-        optionsText += "| 4. Lâmina Amaldiçoada(1x)    - 50  Gold       |\n" +
-        "| 5. Lâmina Negra(1x)         - 80  Gold       |\n" +
-        "| 6. Lâmina Famosa(1x)        - 120 Gold       |\n" +
+        optionsText += "| 4. Lâmina Amaldiçoada(1x) - 50 Gold(10 Dano) |\n" +
+        "| 5. Lâmina Negra(1x)      - 80  Gold(18 Dano) |\n" +
+        "| 6. Lâmina Famosa(1x)    - 120 Gold(25 Dano)  |\n" +
         "| 7. Sair                                      |\n" +
         "+---------------------------------------------+\n";
         options.addAll(Arrays.asList("Você selecionou uma Lamina Amaldiçoada",

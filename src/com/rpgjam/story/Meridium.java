@@ -28,9 +28,12 @@ public class Meridium {
         Console.dialog("[Liz]: Parece que essa mina não é tão fácil quanto pensávamos.\n");
         Console.dialog("[Minerador]: Não se preocupem, ja estamos chegando perto de uma veia de gemas, quando chegarmos se preparem para fazer minha proteção, pois as criaturas viram com o barulho da picareta.\n");
         Console.narrator("[Narrador]: Vocês finalmente encontram uma veia de gema, o minerador começa a minerar, enquanto isso vocês escutam o barulho de algo vindo do subsolo.\n");
-        Console.sleep(8000);
+        
+        System.out.println("Aperte ENTER para continuar...");
+        input.nextLine();
+
         Console.clearConsole();
-        BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Vermes", 30, 5, 50, 15), input, false);
+        BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Vermes", 108, 34, 55, 35), input, false);
         if (battleResult == BattleResult.VICTORY) {
             Console.narrator("[Narrador]: Você e sua tripulação conseguiram derrotar o verme, o minerador ja está finalizando a mineração!\n");
             Console.dialog("[Minerador]: Vamos voltar agora, não é indicado ficar muito tempo nas minas!\n");
@@ -39,9 +42,12 @@ public class Meridium {
             Console.dialogf("[%s]: Aquela torre parece estranha. O que acham de darmos uma olhada?\n", character.getNickname());
             Console.dialog("[Liz]: Pode ser interessante, quem sabe encontramos algo valioso lá dentro.\n");
             Console.narrator("[Narrador]: Ao se aproximarem da torre, percebem que a porta está entreaberta. Ao adentrar, descobrem que o local está infestado de bandidos que utilizaram a torre como esconderijo.\n");
-            Console.sleep(5000);
+            
+            System.out.println("Aperte ENTER para continuar...");
+            input.nextLine();
+
             Console.clearConsole();
-            battleResult = BattleSystem.startBattle(character, new Enemy("Bandidos", 55, 8, 70, 35), input, true);
+            battleResult = BattleSystem.startBattle(character, new Enemy("Bandidos", 115, 35.5, 65, 35), input, true);
             if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
                 if (battleResult == BattleResult.ESCAPE) {
                     int randomGold = (int) (Math.random() * 15) + 1;
@@ -60,9 +66,12 @@ public class Meridium {
                 Console.narrator("[Narrador]: O explorador compartilha informações sobre locais estratégicos, esconderijos de recursos e possíveis desafios na ilha. Agradecidos, vocês continuam a exploração.\n");
                 Console.dialog("[Liz]: Com essas informações, nossa jornada fica mais fácil. Vamos ver o que mais podemos encontrar.\n");
                 Console.narrator("[Narrador]: Enquanto se aventuram, são surpreendidos por uma emboscada de feras selvagens.\n");
-                Console.sleep(5000);
+                
+                System.out.println("Aperte ENTER para continuar...");
+                input.nextLine();
+
                 Console.clearConsole();
-                battleResult = BattleSystem.startBattle(character, new Enemy("Feras Selvagens", 70, 12, 100, 50), input, true);
+                battleResult = BattleSystem.startBattle(character, new Enemy("Feras Selvagens", 142.5, 53, 100, 50), input, true);
                 if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
                     if (battleResult == BattleResult.ESCAPE) {
                         int randomGold = (int) (Math.random() * 15) + 1;
@@ -76,9 +85,12 @@ public class Meridium {
                     Console.dialogf("[%s]: Essa ilha está cheia de desafios, mas também de oportunidades. Vamos continuar explorando?\n", character.getNickname());
                     Console.dialog("[Liz]: Claro, estamos aqui para desbravar e enfrentar o que vier!\n");
                     Console.narrator("[Narrador]: Enquanto avançam pela ilha, notam uma movimentação estranha em uma área obscura da floresta. Ao se aproximar, deparam-se com um grupo de caçadores furtivos que estavam prejudicando a floresta.\n");
-                    Console.sleep(4000);
+                    
+                    System.out.println("Aperte ENTER para continuar...");
+                    input.nextLine();
+
                     Console.clearConsole();
-                    battleResult = BattleSystem.startBattle(character, new Enemy("Caçadores Furtivos", 70, 12, 100, 50), input, false);
+                    battleResult = BattleSystem.startBattle(character, new Enemy("Caçadores Furtivos", 182, 58.5, 130, 50), input, false);
                     if (battleResult == BattleResult.VICTORY) {
                         Console.narrator("[Narrador]: A batalha contra os caçadores é intensa, mas vocês conseguem derrotá-los.\n");
                         Console.dialog("[Oklama]: Esses caçadores estavam causando estragos por aqui. Vamos dar uma olhada mais de perto.\n");
@@ -88,10 +100,13 @@ public class Meridium {
                         Console.dialogf("[%s]: Acho que está na hora de irmos em uma definitiva aventura para ecoar nossa bandeira por todo o mundo!\n", character.getNickname());
                         Console.narrator("[Liz]: Concordo, ja estamos nos aventurando por anos, acho que deve ser a hora de fazer algo grande!\n");
                         Console.dialog("[Oklama]: Para onde vamos?\n");
-                        Console.dialog("[Liz]: Temos a ilha de Ouroboros, A Ilha de Ouroboros é famosa por ser o lar de uma antiga civilização que acumulou grandes tesouros ao longo dos séculos. A lenda conta que um artefato lendário, capaz de conceder grande poder e riquezas, está escondido em um templo sagrado nesta ilha. Acho que seria uma boa para finalizarmos nossa aventura!\n");
-                        Console.dialogf("[%s]: Está decidido, vamos para uma ultima aventura na ilha de Ouroboros.\n", character.getNickname());
+                        Console.dialog("[Liz]: Temos a ilha de Peniel, A Ilha de Peniel é famosa por ser o lar de uma antiga civilização que acumulou grandes tesouros ao longo dos séculos. A lenda conta que um artefato lendário, capaz de conceder grande poder e riquezas, está escondido em um templo sagrado nesta ilha. Acho que seria uma boa para finalizarmos nossa aventura!\n");
+                        Console.dialogf("[%s]: Está decidido, vamos para uma ultima aventura na ilha de Peniel.\n", character.getNickname());
                         Console.narrator("Você finalizou mais uma ilha, estamos muito proximo do fim dessa incrivel saga. Não se esqueça de passar na loja e comprar poções para enfrentar a ilha final!");
-                        Console.sleep(5000);
+                        
+                        System.out.println("Aperte ENTER para continuar...");
+                        input.nextLine();
+
                         Console.clearConsole();
                         return true;
                     } else {

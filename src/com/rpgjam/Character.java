@@ -15,14 +15,14 @@ public class Character {
     private String Nickname;
     private Weapon weapon;
     private int Nivel;
-    private Double Experiencia;
-    private Double Health;
-    private Double maxHealth;
-    private Double Defense;
-    private Double Atack;
-    private Double Gold;
+    private double Experiencia;
+    private double Health;
+    private double maxHealth;
+    private double Defense;
+    private double Atack;
+    private double Gold;
     private Map<String, Integer> Inventory;
-    private Double requiredExperience;
+    private double requiredExperience;
 
     public Character(String classe, String nickname, String bevy) {
         this.Classe = classe;
@@ -30,7 +30,7 @@ public class Character {
         this.bevy = bevy;
         this.Nivel = 1;
         this.Experiencia = 0.0;
-        this.Gold = 200.0;
+        this.Gold = 50.0;
         verifiedClasse(classe);
         this.Inventory = new HashMap<String, Integer>() {
             {
@@ -55,8 +55,8 @@ public class Character {
         if (classe == "Atirador") {
             this.setHealth(25.0);
             this.setMaxHealth(25.0);
-            this.setAtack(8.5);
-            this.setDefense(5.0);
+            this.setAtack(8.0);
+            this.setDefense(6.0);
             this.changeWeapon(0, new RustyGun(), 0.0);
         } else if (classe == "Espadachim") {
             this.setHealth(23.0);
@@ -67,8 +67,8 @@ public class Character {
         } else if (classe == "Guerreiro") {
             this.setHealth(25.0);
             this.setMaxHealth(25.0);
-            this.setAtack(8.0);
-            this.setDefense(6.0);
+            this.setAtack(8.5);
+            this.setDefense(5.0);
             this.changeWeapon(0, new Handle(), 0.0);
         }
     }
@@ -105,43 +105,43 @@ public class Character {
         this.Nivel = nivel;
     }
 
-    public Double getExperiencia() {
+    public double getExperiencia() {
         return this.Experiencia;
     }
 
-    public void setExperiencia(Double experiencia) {
+    public void setExperiencia(double experiencia) {
         this.Experiencia = experiencia;
     }
 
-    public Double getHealth() {
+    public double getHealth() {
         return this.Health;
     }
 
-    public void setHealth(Double health) {
+    public void setHealth(double health) {
         this.Health = health;
     }
 
-    public Double getDefense() {
+    public double getDefense() {
         return this.Defense;
     }
 
-    public void setDefense(Double defense) {
+    public void setDefense(double defense) {
         this.Defense = defense;
     }
 
-    public Double getAtack() {
+    public double getAtack() {
         return this.Atack;
     }
 
-    public void setAtack(Double atack) {
+    public void setAtack(double atack) {
         this.Atack = atack;
     }
 
-    public Double getGold() {
+    public double getGold() {
         return this.Gold;
     }
 
-    public void setGold(Double gold) {
+    public void setGold(double gold) {
         this.Gold = gold;
     }
 
@@ -168,34 +168,34 @@ public class Character {
         return this.Health > 0;
     }
 
-    public void takeDamage(Double damage) {
+    public void takeDamage(double damage) {
         this.Health -= damage;
     }
 
-    public void addExperience(Double experience) {
+    public void addExperience(double experience) {
         this.Experiencia += experience;
         while (this.Experiencia >= this.requiredExperience) {
             upLevel();
         }
     }
 
-    public void addGold(Double gold) {
+    public void addGold(double gold) {
         this.Gold = this.Gold + gold;
     }
 
-    public void removeGold(Double gold) {
+    public void removeGold(double gold) {
         this.Gold = this.Gold - gold;
     }
 
-    public void addHealth(Double health) {
+    public void addHealth(double health) {
         this.Health = this.Health + health;
     }
 
-    public void addAttack(Double attack) {
+    public void addAttack(double attack) {
         this.Atack = this.Atack + attack;
     }
 
-    public void addDefense(Double defense) {
+    public void addDefense(double defense) {
         this.Defense = this.Defense + defense;
     }
 
@@ -211,7 +211,8 @@ public class Character {
         this.Nivel++;
         this.Experiencia -= this.requiredExperience;
         this.requiredExperience *= 1.3;
-        this.Health = this.maxHealth * 1.5;
+        this.maxHealth = this.maxHealth * 1.35;
+        this.Health = this.maxHealth;
         this.Defense *= 1.3;
         this.Atack *= 1.25;
         Console.printGreen("\nParabéns! Você alcançou o nivel " + this.Nivel + "!\nVerifique seus novos status.\n");
@@ -225,19 +226,19 @@ public class Character {
         this.bevy = bevy;
     }
 
-    public Double getMaxHealth() {
+    public double getMaxHealth() {
         return maxHealth;
     }
 
-    public void setMaxHealth(Double maxHealth) {
+    public void setMaxHealth(double maxHealth) {
         this.maxHealth = maxHealth;
     }
 
-    public Double getRequiredExperience() {
+    public double getRequiredExperience() {
         return requiredExperience;
     }
 
-    public void setRequiredExperience(Double requiredExperience) {
+    public void setRequiredExperience(double requiredExperience) {
         this.requiredExperience = requiredExperience;
     }
 }

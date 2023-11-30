@@ -4,6 +4,6 @@ import com.rpgjam.Weapon.Weapon;
 
 public class LaminaFamosa extends Weapon{
     public LaminaFamosa(){
-        super("Lamina Famosa", 25);
+        super("Lamina Famosa", 15);
     }
 }

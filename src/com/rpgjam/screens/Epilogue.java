@@ -22,7 +22,7 @@ public class Epilogue {
         };
 
         String[] storyEpilogue = {
-            "Após a conquista do tesouro na Ilha de Ouroboros, " + character.getNickname() + " decidiu estabelecer-se como um comerciante respeitado. Sua habilidade em liderança e tomada de decisões sagazes transformou seu nome em sinônimo de sucesso nos sete mares.",
+            "Após a conquista do tesouro na Ilha de Peniel, " + character.getNickname() + " decidiu estabelecer-se como um comerciante respeitado. Sua habilidade em liderança e tomada de decisões sagazes transformou seu nome em sinônimo de sucesso nos sete mares.",
             "Liz seguiu sua paixão pela exploração, tornando-se uma cartógrafa renomada. Suas mapas detalhados e conhecimento das águas desconhecidas abriram novas rotas para os aventureiros que buscavam desbravar o desconhecido.",
             "Oklama encontrou seu propósito em treinar uma nova geração de lutadores. Sua força e coragem inspiraram jovens a se unirem à sua academia. Formando uma academia de renome em todos os mares."
         };

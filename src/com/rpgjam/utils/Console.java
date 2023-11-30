@@ -1,7 +1,7 @@
 package com.rpgjam.utils;
 
 public class Console extends Color {
-    private static final int TEMPINMILLISECONDS = 40;
+    private static final int TEMPINMILLISECONDS = 50;
 
     public static void dialog(String msg) {
         System.out.print(GREEN);
@@ -75,6 +75,10 @@ public class Console extends Color {
 
     public static void printRed(String msg) {
         System.out.printf("%s%s%s\n", RED, msg, RESET);
+    }
+    public static void printRedf(String msg, Object... args) {
+        String formattedMsg = String.format(msg, args);
+        System.out.printf("%s%s%s\n", RED, formattedMsg, RESET);
     }
 
     public static void printGreen(String msg) {

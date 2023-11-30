@@ -8,7 +8,7 @@ import com.rpgjam.story.Avalon;
 import com.rpgjam.story.Blefuscu;
 import com.rpgjam.story.Meridium;
 import com.rpgjam.story.Nublar;
-import com.rpgjam.story.Ouroboros;
+import com.rpgjam.story.Peniel;
 import com.rpgjam.utils.Color;
 import com.rpgjam.utils.Console;
 
@@ -19,6 +19,7 @@ public class Screen {
   public Character character;
   private Shop shop;
   private boolean adventureContinue = false;
+  private boolean lose = false;
 
   public void menu() {
     while (!selected) {
@@ -67,9 +68,10 @@ public class Screen {
   public void menuAction() {
     Console.clearConsole();
     while (!selected) {
-      if (!adventureContinue){
+      if (!adventureContinue) {
         Console.printCyan(
             "Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
+        if (lose) menu();
         int option = input.nextInt();
         switch (option) {
           case 1:
@@ -91,7 +93,7 @@ public class Screen {
             Console.printRed("Escolha entre as opções sugeridas: 1, 2, 3, 4 ou 5.");
             continue;
         }
-      }else {
+      } else {
         Console.printCyan(
             "Selecione uma ação:\n1. Continuar aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
         int option = input.nextInt();
@@ -119,39 +121,44 @@ public class Screen {
   }
 
   public void adventure() {
-    Nublar islandOne = new Nublar(character);
-    Avalon islandTwo = new Avalon(character);
-    Blefuscu islandThree = new Blefuscu(character);
-    Meridium islandFour = new Meridium(character);
-    Ouroboros islandFive = new Ouroboros(character);
+    Nublar islandOne = new Nublar(character); // check
+    Avalon islandTwo = new Avalon(character); // check
+    Blefuscu islandThree = new Blefuscu(character); // check
+    Meridium islandFour = new Meridium(character); 
+    Peniel islandFive = new Peniel(character);
     adventureContinue = islandOne.start();
+    lose = !adventureContinue;
     menuAction();
     adventureContinue = islandTwo.start();
+    lose = !adventureContinue;
     menuAction();
     adventureContinue = islandThree.start();
+    lose = !adventureContinue;
     menuAction();
     adventureContinue = islandFour.start();
+    lose = !adventureContinue;
     menuAction();
     adventureContinue = islandFive.start();
+    lose = !adventureContinue;
+    menuAction();
     Epilogue.epilogue(character);
     menu();
   }
 
-  
-
   public void status() {
     Console.clearConsole();
-    Console.dialogf("%s Seus status atuais são:", Color.BOLD);
-    Console.dialogf("Nivel - %d", character.getNivel());
-    Console.dialogf("Experiencia Atual - %.2f", character.getExperiencia());
-    Console.dialogf("Arma Atual - %s", character.getNameWeapon());
-    Console.dialogf("Dano da Arma - %.1f", character.getDamageWeapon());
-    Console.dialogf("Ataque - %.2f", character.getAtack());
-    Console.dialogf("Defesa - %.2f", character.getDefense());
-    Console.dialogf("Vida - %.2f/%.2f", character.getHealth(), character.getMaxHealth());
-    Console.dialogf("Gold - %.2f", character.getGold());
+    Console.printRedf("%sSeus status atuais são:", Color.BOLD);
+    Console.printRedf("Nivel - %s%d", Color.YELLOW, character.getNivel());
+    Console.printRedf("Experiencia Atual - %s%.2f/%.2f", Color.YELLOW, character.getExperiencia(),
+        character.getRequiredExperience());
+    Console.printRedf("Arma Atual - %s%s", Color.YELLOW, character.getNameWeapon());
+    Console.printRedf("Dano da Arma - %s%.1f", Color.YELLOW, character.getDamageWeapon());
+    Console.printRedf("Ataque - %s%.2f", Color.YELLOW, character.getAtack());
+    Console.printRedf("Defesa - %s%.2f", Color.YELLOW, character.getDefense());
+    Console.printRedf("Vida - %s%.2f/%.2f", Color.YELLOW, character.getHealth(), character.getMaxHealth());
+    Console.printRedf("Gold - %s%.2f\n", Color.YELLOW, character.getGold());
     String[] options = { "Você retornou ao menu principal" };
-    selection.newSelection(1, options, "1- Voltar");
+    selection.newSelection(1, options, "1. Voltar");
     menuAction();
   }
 
@@ -182,16 +189,24 @@ public class Screen {
     String classe = selection.newSelection(4,
         options, "1. Espadachim\n2. Atirador\n3. Guerreiro\n");
     Console.clearConsole();
-    Console.dialogf("- Perfeito %s, Você irá aprender e lutará que nem um %s. Mas preciso que você me diga qual será o nome de seu bando pirata: ", Color.RED + Color.BOLD + nick + Color.RESET + Color.GREEN, Color.CYAN + Color.BOLD + classe + Color.RESET + Color.GREEN);
+    Console.dialogf(
+        "- Perfeito %s, você irá aprender e lutará no estilo de %s. Pórem preciso que você me diga qual será o nome de seu bando pirata: ",
+        Color.RED + Color.BOLD + nick + Color.RESET + Color.GREEN,
+        Color.CYAN + Color.BOLD + classe + Color.RESET + Color.GREEN);
 
     String bevy = input.nextLine();
 
     character = new Character(classe, nick, bevy);
     Console.clearConsole();
     Console.dialogf(
-        "\nVold: %s, Agora que você é um %s está apto para enfrentar os desafios do mar de viwod, mas tome cuidado, pois pode dar de cara com uma tripulação mais forte. Desejo sorte em sua navegação e que encontre bons companheiro para o seu bando dos %s\n",
-        Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN, Color.CYAN + Color.BOLD + character.getClasse() + Color.RESET + Color.GREEN, Color.RED + Color.BOLD + character.getBevy());
+        "\nVold: %s, agora que você é um %s está apto para enfrentar os desafios do mar de viwod, mas tome cuidado, pois pode dar de cara com uma tripulação mais forte. Desejo sorte em sua navegação e que encontre bons companheiro para o seu bando dos %s\n",
+        Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN,
+        Color.CYAN + Color.BOLD + character.getClasse() + Color.RESET + Color.GREEN,
+        Color.RED + Color.BOLD + character.getBevy());
     shop = new Shop(this);
+    Console.sleep(200);
+    lose = false;
+    adventureContinue = false;
     menuAction();
   }
 }

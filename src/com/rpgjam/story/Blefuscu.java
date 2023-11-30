@@ -25,48 +25,53 @@ public class Blefuscu {
         Console.dialogf("[%s]: Estamos em busca de um carpinteiro habilidoso para reparar nosso navio.\n", character.getNickname());
         Console.dialog("[Grizzle]: Vieram ao local correto, vejo que têm um belo barco precisando de cuidados. Ficarei feliz em ajudar, deixe-me dar uma olhada nos estragos.\n");
         Console.narrator("[Narrador]: Grizzle examina o navio, avaliando os danos e fazendo planos para os reparos necessários.\n");
-        Console.dialog("[Grizzle]: Não se preocupem, os danos não foram muitos, mas vai levar algum tempo. Enquanto isso, porque não aproveitam para conhecer a cidade.\n");
+        Console.dialog("[Grizzle]: Não se preocupem, os danos não foram muitos, mas vai levar algum tempo. Enquanto isso, por quê não aproveitam para conhecer a cidade?\n");
         Console.dialogf("[%s]: Ótimo! Enquanto isso, o que há para fazer nesta ilha?\n", character.getNickname());
-        Console.dialog("[Grizzle]: Eu ouvi recentemente um rumor sobre um tesouro, aparentemente ele esta escondido na colina mais alta da ilha m uma caverna, porque não aproveitam o tempo e vão la examinar?\n");
-        Console.dialogf("[%s]: Acho que é isso, oque vocês acham de irmos procurar pelo tesouro?\n", character.getNickname());
-        Console.dialog("[Oklama]: Acho perfeito, se acharmos poderemos repor o dinheiro que gastamos!\n");
+        Console.dialog("[Grizzle]: Eu ouvi recentemente um rumor sobre um tesouro, aparentemente ele está escondido na colina mais alta da ilha em uma caverna, por quê não aproveitam o tempo e vão la examinar?\n");
+        Console.dialogf("[%s]: Acho que é isso. O que vocês acham de irmos procurar pelo tesouro?\n", character.getNickname());
+        Console.dialog("[Oklama]: Acho perfeito! Se acharmos poderemos repor o dinheiro que gastamos.\n");
         Console.dialog("[Liz]: Tambem concordo em irmos!\n");
         Console.narratorf("[Narrador]: Como todos os tripulantes concordam, %s e sua tripulação parte para a colina mais alta!\n", character.getNickname());
         Console.narrator("[Narrador]: Na subida pela colina, Eles foram supreendidos por um grupo de monstros!\n");
-        Console.sleep(12000);
+        
+        System.out.println("Aperte ENTER para continuar...");
+        input.nextLine();
+
         Console.clearConsole();
-        BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Monstros", 30, 5, 50, 15), input, true);
+        BattleResult battleResult = BattleSystem.startBattle(character, new Enemy("Monstros", 114, 26, 50, 15), input, true);
 
         if (battleResult == BattleResult.VICTORY || battleResult == BattleResult.ESCAPE) {
             if (battleResult == BattleResult.ESCAPE) {
                 int randomGold = (int) (Math.random() * 15) + 1;
                 double gold = character.getGold() * (randomGold / 100.0);
                 System.out.println(randomGold);
-                Console.narrator("Eles eram fortes demais, então vocês decidem fugir e continuar a subir a colina!");
+                Console.narrator("[Narrador]: Eles eram fortes demais, então vocês decidem fugir e continuar a subir a colina!");
                 Console.narrator(
-                        "Um ganho furou um de seus bolsos e uma quantia de gold caiu."
+                        "[Narrador]: Um ganho furou um de seus bolsos e uma quantia de gold caiu."
                                 + gold + " golds\n");
                 character.removeGold(gold);
             } else
-                Console.narrator("Vocês conseguiram derrotar com exito o grupo de monstros!\n");
-            Console.dialogf("[%s]: Vamos pessoal, ja consigo ver o topo da colina, se tivermos sorte será facil achar esse tesouro!\n", character.getNickname());
+                Console.narrator("[Narrador]: Vocês conseguiram derrotar com êxito o grupo de monstros!\n");
+            Console.dialogf("[%s]: Vamos pessoal, já consigo ver o topo da colina, se tivermos sorte será facil achar esse tesouro!\n", character.getNickname());
             Console.dialog("[Oklama]: Com certeza não acharemos facil, se nao alguem ja o teria achado!\n");
             Console.narrator("[Narrador]: Após algumas horas procurando pela colina, vocês acham uma caverna e decidem entrar!\n");
             Console.dialogf("[%s]: Será que essa é a caverna que o rumor citava?\n", character.getNickname());
-            Console.dialog("[Liz]: So descobriremos, caso tenha algum tesouro ai dentro!\n");
+            Console.dialog("[Liz]: Só descobriremos, caso tenha algum tesouro aí dentro!\n");
             Console.dialog("[Oklama]: Vamos entrar logo!\n");
-            Console.narratorf("[Narrador]:  O tripulação %s entra na caverna e vai a explorando.\n", character.getBevy());
-            Console.dialogf("[%s]: Nossa, essa caverna é gigante nem parece que esta numa colina!\n", character.getNickname());
-            Console.dialog("[Liz]: Acho que ja devemo estar perto de terminar a exploração!\n");
+            Console.narratorf("[Narrador]:  O tripulação %s entra na caverna e vai explorando.\n", character.getBevy());
+            Console.dialogf("[%s]: Nossa, essa caverna é gigante nem parece que está em uma colina!\n", character.getNickname());
+            Console.dialog("[Liz]: Acho que ja devemos estar perto de terminar a exploração!\n");
             Console.narrator("[Narrador]: Apos mais alguns minutos andando, vocês finalmente chegam ao final da caverna!\n");
-            Console.dialogf("[%s]: Vejam ha um baú em cima daquela pedra, acho que conseguimos encontrar o tesouro!\n", character.getNickname());
-            Console.dialog("[Liz]: Estou achando meio facil isso, embora demoramos horas andando não acho que seria tão simples assim!\n");
-            Console.narrator("[Narrador]: Liz estava certa, de repente um grande estrondo na caverna, ao olharem para cima aparece um dragão!\n");
+            Console.dialogf("[%s]: Vejam há um baú em cima daquela pedra, acho que conseguimos encontrar o tesouro.\n", character.getNickname());
+            Console.dialog("[Liz]: Estou achando meio facil isso, embora demoramos horas andando não acho que seria tão simples assim.\n");
+            Console.narrator("[Narrador]: Liz estava certa, *de repente um grande estrondo na caverna*, ao olharem para cima aparece um dragão!\n");
             Console.dialogf("[%s]: Você e essa sua boca liz, agora teremos que derrotar esse dragão para conseguir sair daqui com vida e com o tesouro!\n", character.getNickname());
 
-            Console.sleep(7000);
+            System.out.println("Aperte ENTER para continuar...");
+            input.nextLine();
+
             Console.clearConsole();
-            battleResult = BattleSystem.startBattle(character, new Enemy("Dragão", 55, 8, 70, 35), input, false);
+            battleResult = BattleSystem.startBattle(character, new Enemy("Dragão", 176, 32, 70, 55), input, false);
             if (battleResult == BattleResult.VICTORY) {
                 Console.dialogf("[%s]: Esse dragão era incrivelmente forte, ainda bem que viemos nos 3 para cá, agora vamos ver oque tem dentro desse baú!\n", character.getNickname());
 
@@ -76,9 +81,12 @@ public class Blefuscu {
                 Console.narrator("[Narrador]: Vocês começam a voltar todo o caminho pecorrido, horas se passam quando estavam quase chegando a saida, um barulho vindo da entrada, alguns minutos depois vocês se deparam com outro dragão!\n");
                 Console.dialog("[Liz]: Obvio que teria outro dragão, provavelmente o dragão que derrotamos era o fêmea, esse deve ser o macho!\n");
                 Console.dialogf("[%s]: espero que as fêmeas sejam as mais fortes do grupo!\n", character.getNickname());
-                Console.sleep(5000);
+                
+                System.out.println("Aperte ENTER para continuar...");
+                input.nextLine();
+
                 Console.clearConsole();
-                battleResult = BattleSystem.startBattle(character, new Enemy("Dragão Macho", 70, 12, 100, 50), input, false);
+                battleResult = BattleSystem.startBattle(character, new Enemy("Dragão Macho", 200, 48, 90, 70), input, false);
                 if (battleResult == BattleResult.VICTORY) {
                         Console.narrator("[Narrador]: Vocês conseguiram subjugar o dragão, porém Oklama ficou severamente ferido, vocês tem que leva-lo urgentemente para receber cuidados!\n");
                     Console.dialogf("[%s]: Liz você leva o tesouro, eu irei com Oklama na frente.\n", character.getNickname());
@@ -103,7 +111,10 @@ public class Blefuscu {
                     Console.dialog("[Liz]: Temos algumas opções de ilhas para explorar. Podemos escolher entre a ilha de Meridium, conhecida por suas riquezas naturais, ou a ilha de Zephyr, famosa por seus fortes ventos que impulsionam a navegação.\n");
                     Console.dialogf("[%s]: Vamos para a ilha de Meridium. Parece um lugar cheio de oportunidades e riquezas naturais.\n", character.getNickname());
                     Console.narrator("Parabéns pela conclusão de mais uma ilha, compre itens e se abasteça para os proximos desafios!");
-                    Console.sleep(13000);
+                    
+                    System.out.println("Aperte ENTER para continuar...");
+                    input.nextLine();
+
                     Console.clearConsole();
                     return true;
                 } else {
