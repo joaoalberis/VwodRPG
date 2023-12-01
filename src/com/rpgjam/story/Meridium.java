@@ -25,7 +25,7 @@ public class Meridium {
         Console.dialogf("[%s]: Desafios não nos assustam. Vamos acompanhar um minerador!\n", character.getNickname());
         Console.narrator("[Narrador]: Vocês vão ate um minerador, o qual contrata vocês para fazer sua proteção.\n");
         Console.narrator("[Narrador]: Ao entrar na mina, vocês se deparam com túneis escuros e desafios inesperados, incluindo criaturas subterrâneas.\n");
-        Console.dialog("[Liz]: Parece que essa mina não é tão fácil quanto pensávamos.\n");
+        Console.dialog("[Liz]: Parece que essa mina não é tão fácil quanto pensávamos né? ^-^\n");
         Console.dialog("[Minerador]: Não se preocupem, ja estamos chegando perto de uma veia de gemas, quando chegarmos se preparem para fazer minha proteção, pois as criaturas viram com o barulho da picareta.\n");
         Console.narrator("[Narrador]: Vocês finalmente encontram uma veia de gema, o minerador começa a minerar, enquanto isso vocês escutam o barulho de algo vindo do subsolo.\n");
         
@@ -53,8 +53,8 @@ public class Meridium {
                     int randomGold = (int) (Math.random() * 15) + 1;
                     double gold = character.getGold() * (randomGold / 100.0);
                     System.out.println(randomGold);
-                    Console.narrator("Os bandidos eram numerosos e bem armados, então decidem recuar estrategicamente da torre.\n");
-                    Console.narrator("Vocês deixaram cair " + gold + " Golds\n");
+                    Console.narrator("[Narrador]: Os bandidos eram numerosos e bem armados, então decidem recuar estrategicamente da torre.\n");
+                    Console.narrator("[Narrador]: Vocês deixaram cair " + gold + " Golds\n");
                     character.removeGold(gold);
                 } else
                     Console.dialogf("[%s] Esses bandidos não eram páreo para nós. Vamos continuar explorando e ver o que mais podemos descobrir.\n", character.getNickname());
@@ -77,11 +77,11 @@ public class Meridium {
                         int randomGold = (int) (Math.random() * 15) + 1;
                         double gold = character.getGold() * (randomGold / 100.0);
                         System.out.println(randomGold);
-                        Console.narrator("As feras selvagens eram ágeis e ferozes demais. Decidem recuar temporariamente.");
-                        Console.narrator("Uma das feras conseguiu puxar uma bolsa com dinheiro. Nessa bolsa continha " + gold + " Golds");
+                        Console.narrator("[Narrador]: As feras selvagens eram ágeis e ferozes demais. Decidem recuar temporariamente.");
+                        Console.narrator("[Narrador]: Uma das feras conseguiu puxar uma bolsa com dinheiro. Nessa bolsa continha " + gold + " Golds");
                         character.removeGold(gold);
                     } else
-                        Console.narrator("Com  trabalho em equipe, vocês conseguem derrotar as feras selvagens, garantindo a segurança no momento.\n");
+                        Console.narrator("[Narrador]: Com  trabalho em equipe, vocês conseguem derrotar as feras selvagens, garantindo a segurança no momento.\n");
                     Console.dialogf("[%s]: Essa ilha está cheia de desafios, mas também de oportunidades. Vamos continuar explorando?\n", character.getNickname());
                     Console.dialog("[Liz]: Claro, estamos aqui para desbravar e enfrentar o que vier!\n");
                     Console.narrator("[Narrador]: Enquanto avançam pela ilha, notam uma movimentação estranha em uma área obscura da floresta. Ao se aproximar, deparam-se com um grupo de caçadores furtivos que estavam prejudicando a floresta.\n");

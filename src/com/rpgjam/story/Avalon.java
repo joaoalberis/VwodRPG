@@ -35,14 +35,12 @@ public class Avalon {
                 Console.narrator("[Narrador]: Vocês tentaram fugir, mas não estavam conseguindo, por sorte um monstro marinho apareceu e comeu a parte do barco onde a tripulação inimiga se encontrava. Vocês ficaram surpresos e jogaram " + character.getGold() + " ouro(s) no mar, lendas dizem que monstros marinhos  seguem coisas brilhantes!\n");
                 character.removeGold(gold);
             } else
-                Console.dialogf("[%s]: Essa foi por pouco, embora eles tivessem em grande quantidade todos eram fracos, nem o capitão era descente em batalhas!\n", character.getNickname());
-            Console.sleep(6000);
-            Console.clearConsole();
-            Console.dialog("[Oklama]: Vamos ver oque eles tinham em seus navios, espero que tenha uma boa quantidade de dinheiro para nossos suplimentos, já estamos quase chegando em avalon.\n");
-            Console.narrator("[Narrador]: Vocês foram analisar a embarcação inimiga, para surpresa de todos, embora eles parecerem fracos tinham uma quantidade razoavel em tesouros e ouro!\n");
-            Console.dialog("[Liz]: Acho que essa quantidade vai ser mais que o suficiente para comprar os suplementos, vamos voltar e ir diretamente a avalon!\n");
-            Console.narrator("[Narrador]: Após alguns dias navegando finalmente a ilha avalon estava a vista!\n");
-            
+            Console.dialogf("[%s]: Essa foi por pouco! Embora em grande quantidade, eram fracos. Nem o capitão deles era decente em batalhas!\n", character.getNickname());
+            Console.dialog("[Oklama]: Vamos ver o que eles tinham nos navios. Espero que tenha uma boa quantidade de dinheiro para nossos suprimentos, já estamos quase chegando em Avalon.\n");
+            Console.narrator("[Narrador]: Ao analisar a embarcação inimiga, surpreendentemente, apesar de parecerem fracos, eles tinham uma quantidade razoável de tesouros e ouro!\n");
+            Console.dialog("[Liz]: Acho que isso será mais que suficiente para comprar os suplementos. Vamos voltar e ir diretamente para Avalon!\n");
+            Console.narrator("[Narrador]: Após alguns dias navegando, finalmente a ilha Avalon estava à vista!\n");
+
             System.out.println("Aperte ENTER para continuar...");
             input.nextLine();
 

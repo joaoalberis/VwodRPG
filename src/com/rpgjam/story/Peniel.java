@@ -33,7 +33,7 @@ public class Peniel {
         Console.enemy("[Guardião Ancestral]: Apenas os corajosos podem passar por aqui. Quem são vocês?\n");
         Console.dialogf("[%s]: Somos a tripulação %s. Estamos em busca do artefato lendário.\n", character.getNickname(), character.getBevy());
         Console.enemy("[Guardião Ancestral]: Se quiserem passar, terão que provar sua força.\n");
-        
+
         System.out.println("Aperte ENTER para continuar...");
         input.nextLine();
 
@@ -65,7 +65,7 @@ public class Peniel {
                 Console.dialogf("[%s]: Não podemos deixar que atrapalhem nossa busca. Estejam prontos para o confronto.\n", character.getNickname());
                 Console.enemy("[Caçador Rival]: Parece que chegaram tarde demais. Essa riqueza será nossa!\n");
                 Console.dialogf("[%s]: Não conte com isso!\n", character.getNickname());
-                
+
                 System.out.println("Aperte ENTER para continuar...");
                 input.nextLine();
 
@@ -77,14 +77,14 @@ public class Peniel {
                     Console.dialog("[Oklama]: Cada desafio superado nos aproxima do tesouro.\n");
                     Console.dialog("[Morador Local]: Os verdadeiros merecedores prevalecerão. Boa sorte, forasteiros apartir daqui não poderei acompanhar vocês, espero pelo retorno triufante! Se preparem, pois estão proximos do guardião final.\n");
                     Console.dialogf("[%s]: Obrigado por nos guiar até aqui, pode ter certeza que voltaremos com o tesouro!\n", character.getNickname());
-                    Console.narrator("[Narrador]: Enquanto vocẽs vão avançando o ar vai ficando mais pesado cada vez que ficam mais proximo do centro do templo.\n");
+                    Console.narrator("[Narrador]: Enquanto vocês vão avançando o ar vai ficando mais pesado cada vez que ficam mais proximo do centro do templo.\n");
                     Console.narrator("[Narrador]: Uma ameaça preenche o ar, quando a figura imponente do Guardião Final se materializa à frente.\n");
                     Console.enemy("[Guardião Final]: Aqueles que chegaram até aqui devem provar sua dignidade e bravura diante de mim.\n");
                     Console.dialog("[Liz]: Mais um? Espero que este seja o último desafio.\n");
                     Console.dialogf("[%s]: Esse guardião deve ser o final, so pela sua presença exala uma áurea poderosa, pessoal se prepare, esse será nosso ultimo desafio!\n", character.getNickname());
                     Console.dialog("[Oklama]: Estava esperando por isso!\n");
                     Console.enemy("[Guardião Final]: Vocês estão confiantes, eu admito que vocês tem muita corajem e ego alto, mas não consiguiram tirar o tesouro daqui, estou guardando esse templo a mais de mil anos, e nunca ninguem conseguiu!\n");
-                    
+        
                     System.out.println("Aperte ENTER para continuar...");
                     input.nextLine();
 
@@ -104,7 +104,7 @@ public class Peniel {
                         Console.dialogf("[%s]: Fico agradecido, infelizmente essa será nossa ultima aventura!\n", character.getNickname());
                         Console.dialog("[Liz]: Pelo menos conseguimos alcançar nosso objetivo!\n");
                         Console.narratorf("[Narrador]: Com isso a aventura da tripulação %s foi encerrada.", character.getBevy());
-                        
+
                         System.out.println("Aperte ENTER para continuar...");
                         input.nextLine();
 

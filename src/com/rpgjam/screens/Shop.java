@@ -36,9 +36,9 @@ public class Shop {
       "Você selecionou uma poção de ataque"
     ));
 
-    String optionsText = "+---------------------------------------------+\n" +
-        "|               BEM-VINDO À LOJA               |\n" +
-        "+---------------------------------------------+\n" +
+    String optionsText = "+----------------------------------------------+\n" +
+        "|      BEM-VINDO À LOJA    SALDO: "+ character.getGold() +" Golds|\n" +
+        "+----------------------------------------------+\n" +
         "| 1. Poção de Cura (1x)       - 25  Gold       |\n" +
         "| 2. Poção de Defesa(1x)      - 35  Gold       |\n" +
         "| 3. Poção de Ataque (1x)     - 40  Gold       |\n";
@@ -49,7 +49,7 @@ public class Shop {
         "| 5. Lâmina Negra(1x)      - 80  Gold(18 Dano) |\n" +
         "| 6. Lâmina Famosa(1x)    - 120 Gold(25 Dano)  |\n" +
         "| 7. Sair                                      |\n" +
-        "+---------------------------------------------+\n";
+        "+----------------------------------------------+\n";
         options.addAll(Arrays.asList("Você selecionou uma Lamina Amaldiçoada",
           "Você selecionou uma Lamina Negra",
           "Você selecionou uma Lamina Famosa"));
@@ -59,7 +59,7 @@ public class Shop {
         "| 5. Pistola Dupla(1x)        - 80  Gold       |\n" +
         "| 6. Rifle(1x)                - 120 Gold       |\n" +
         "| 7. Sair                                      |\n" +
-        "+---------------------------------------------+\n";
+        "+----------------------------------------------+\n";
         options.addAll(Arrays.asList("Você selecionou uma Pistola",
           "Você selecionou uma Pistola Dupla",
           "Você selecionou uma Rifle"));
@@ -69,7 +69,7 @@ public class Shop {
         "| 5. Garra da Pantera(1x)     - 80  Gold       |\n" +
         "| 6. Mão do Desespero(1x)     - 120 Gold       |\n" +
         "| 7. Sair                                      |\n" +
-        "+---------------------------------------------+\n";
+        "+----------------------------------------------+\n";
         options.addAll(Arrays.asList("Você selecionou uma Soqueira",
           "Você selecionou uma Garra da Pantera",
           "Você selecionou uma Mão do Desespero"));

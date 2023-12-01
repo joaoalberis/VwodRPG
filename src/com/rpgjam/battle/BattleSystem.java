@@ -36,9 +36,9 @@ public class BattleSystem {
     }
 
     if (player.isAlive()) {
-      Console.printGreen("\nVocê venceu a batalha!");
-      Console.printGreen("Você recebeu " + enemy.getExperience() + " de experiencia!");
-      Console.printGreen("Você recebeu " + enemy.getGold() + " de Gold!\n");
+      Console.printYellow("\n[LOG]: Você venceu a batalha!");
+      Console.printYellow("[LOG]: Você recebeu " + enemy.getExperience() + " de experiencia!");
+      Console.printYellow("[LOG]: Você recebeu " + enemy.getGold() + " de Gold!\n");
       player.addExperience(enemy.getExperience());
       player.addGold(enemy.getGold());
       return BattleResult.VICTORY;
@@ -132,14 +132,14 @@ private static boolean applyItemEffects(Character player, int itemSelect, String
     if (itemSelect == 1) {
         Double newDefense = player.getDefense() * 0.1;
         player.setDefense(newDefense + player.getDefense());
-        Console.narrator("Você usou uma Poção de Defesa e fortaleceu temporariamente sua resistência!");
+        Console.narrator("[LOG]: Você usou uma Poção de Defesa e fortaleceu temporariamente sua resistência!");
     } else if (itemSelect == 2) {
         if(!healthPlayer(player)) return false;
-        Console.narrator("Você usou uma Poção de Cura e recuperou parte da sua saúde!");
+        Console.narrator("[LOG]: Você usou uma Poção de Cura e recuperou parte da sua saúde!");
     } else if (itemSelect == 3) {
         Double newAttack = player.getAtack() * 0.05;
         player.setAtack(newAttack + player.getAtack());
-        Console.narrator("Você usou uma Poção de Ataque");
+        Console.narrator("[LOG]: Você usou uma Poção de Ataque");
     }
 
     player.removeItemInventory(key, 1);
@@ -161,23 +161,23 @@ private static boolean applyItemEffects(Character player, int itemSelect, String
   private static void playerAttack(Character player, Enemy enemy) {
     double damageDealt = player.getAtack() + player.getDamageWeapon();
     enemy.takeDamage(damageDealt);
-    Console.narratorf("Você ataca os %s e causa %.1f de dano!", enemy.getName(), damageDealt);
+    Console.narratorf("[LOG]: Você ataca o(s) %s e causa %.1f de dano!", enemy.getName(), damageDealt);
   }
 
   private static void enemyAttack(Character player, Enemy enemy) {
     double damageDealt = enemy.getDamage() - player.getDefense();
     player.takeDamage(damageDealt);
-    Console.narratorf("Os %s atacam você e causa %.1f de dano!\n", enemy.getName(), damageDealt);
+    Console.narratorf("[LOG]: O(s) %s atacam você e causa %.1f de dano!\n", enemy.getName(), damageDealt);
   }
 
   private static boolean attemptEscape() {
     boolean escaped = Math.random() < 0.5;
 
     if (escaped) {
-      Console.narrator("Você conseguiu escapar da batalha!");
+      Console.narrator("[LOG]: Você conseguiu escapar da batalha!");
       return true;
     } else {
-      Console.narrator("Você não conseguiu escapar desta vez!");
+      Console.narrator("[LOG]: Você não conseguiu escapar desta vez!");
       return false;
     }
   }
