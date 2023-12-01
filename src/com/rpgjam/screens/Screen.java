@@ -70,7 +70,7 @@ public class Screen {
     while (!selected) {
       if (!adventureContinue) {
         Console.printCyan(
-            "Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar");
+            "Selecione uma ação:\n1. Iniciar uma nova aventura\n2. Visitar a loja\n3. Verificar seu status\n4. Verificar seu inventário\n5. Voltar\n");
         if (lose) menu();
         int option = input.nextInt();
         switch (option) {
@@ -166,7 +166,7 @@ public class Screen {
     Console.clearConsole();
     character.showInventory();
     String[] options = { "Você retornou ao menu principal" };
-    selection.newSelection(1, options, "1- Voltar");
+    selection.newSelection(1, options, "1. Voltar");
     menuAction();
   }
 
@@ -177,20 +177,20 @@ public class Screen {
         "Guerreiro",
     };
     Console.clearConsole();
-    Console.dialog("\nVold: Olá jovem pirata, me chamo vold vejo que decidiu se aventurar pelos mares de viwod.");
-    Console.dialog("- Qual seria o nome do jovem pirata?");
+    Console.dialog("\n[Vold]: Olá jovem pirata, me chamo Vold vejo que decidiu se aventurar pelos mares de viwod.");
+    Console.dialog("\n[Vold]: Qual seria o nome do jovem pirata?");
     String nick = input.nextLine();
     Console.clearConsole();
 
-    Console.dialogf("\nVold: Fico feliz em lhe conhecer %s%s%s", Color.RED, Color.BOLD, nick);
+    Console.dialogf("\n[Vold]: Fico feliz em lhe conhecer %s%s%s", Color.RED, Color.BOLD, nick);
     Console.dialog(
-        "- Agora preciso que você decida entre 3 estilos de luta, escolha sabiamente, pois seu estilo irá lhe acompanhar por toda sua navegação pirata.\n");
+        "\n[Vold]: Agora preciso que você decida entre 3 estilos de luta, escolha sabiamente, pois seu estilo irá lhe acompanhar por toda sua navegação pirata.\n");
 
     String classe = selection.newSelection(4,
-        options, "1. Espadachim\n2. Atirador\n3. Guerreiro\n");
+        options, "1. Espadachim\n2. Atirador\n3. Guerreiro");
     Console.clearConsole();
     Console.dialogf(
-        "- Perfeito %s, você irá aprender e lutará no estilo de %s. Pórem preciso que você me diga qual será o nome de seu bando pirata: ",
+        "[Vold]: Perfeito %s, você irá aprender e lutará no estilo de um %s. Pórem preciso que você me diga qual será o nome de seu bando pirata: ",
         Color.RED + Color.BOLD + nick + Color.RESET + Color.GREEN,
         Color.CYAN + Color.BOLD + classe + Color.RESET + Color.GREEN);
 
@@ -199,14 +199,18 @@ public class Screen {
     character = new Character(classe, nick, bevy);
     Console.clearConsole();
     Console.dialogf(
-        "\nVold: %s, agora que você é um %s está apto para enfrentar os desafios do mar de viwod, mas tome cuidado, pois pode dar de cara com uma tripulação mais forte. Desejo sorte em sua navegação e que encontre bons companheiro para o seu bando dos %s\n",
+        "\n[Vold]: %s, agora que você é um %s está apto para enfrentar os desafios do mar de Viwod, mas tome cuidado, pois pode dar de cara com uma tripulação mais forte. Desejo sorte em sua navegação e que encontre bons companheiros para o seu bando dos %s\n",
         Color.RED + Color.BOLD + character.getNickname() + Color.RESET + Color.GREEN,
         Color.CYAN + Color.BOLD + character.getClasse() + Color.RESET + Color.GREEN,
         Color.RED + Color.BOLD + character.getBevy());
     shop = new Shop(this);
-    Console.sleep(200);
     lose = false;
     adventureContinue = false;
+
+    
+    System.out.println("Aperte ENTER para continuar...");
+    input.nextLine();
+
     menuAction();
   }
 }
